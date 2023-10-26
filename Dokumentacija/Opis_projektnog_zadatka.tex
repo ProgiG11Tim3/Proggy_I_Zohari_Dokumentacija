@@ -1,7 +1,7 @@
 \chapter{Opis projektnog zadatka}
 		
 		\text Cilj ovog projekta razviti je programsku podršku za web aplikaciju \textit{Ozdravi} koja će korisnicima omogućiti olakšanu komunikaciju s pedijatrom i liječnikom obiteljske medicine, te lakši pregled podataka o pregledima sebe i svojeg djeteta. Uz to, aplikacija će automatizirati slanje preporuka za bolovanje i ispričnica, uvelike štedeći vrijeme roditeljima koji zbog toga neće morati naknadno ići po imenovane potvrde.\\
-		Prilikom pokretanja aplikacije neprijavljenom korisniku će se prikazati naslovna web stranica s opisom funkcionalnosti aplikacije, katalogom usluga, te opcijama za registraciju ili prijavu. \\
+		Prilikom pokretanja aplikacije neprijavljenom korisniku prikazat će se naslovna web stranica s opisom funkcionalnosti aplikacije, katalogom usluga, te opcijama za registraciju ili prijavu. \\
 		Prilikom registracije korisnik unosi sljedeće podatke:
 		\begin{packed_item}
 			
@@ -12,7 +12,32 @@
 			\item  prezime
 			\item  OIB
 		\end{packed_item}
-		Registracijom u sustav, korisnik dobiva prava roditelja. Naknadna promjena prava je nemoguća. Ostale uloge se ne registriraju, već su dodane u sustav od strane administratora. Osim roditelja, postoje još tri vrste korisnika:
+		Registracijom u sustav, korisnik dobiva prava roditelja. Naknadna promjena prava je nemoguća. Ostale uloge se ne registriraju, već su dodane u sustav od strane administratora. 
+		
+		\underbar{\textit{Roditelj}} prijavom u sustav koristeći svoje korisničko ime i lozinku dolazi do uvodne stranice za roditelje. Na uvodnoj stranici nalaze se obavijesti od liječnika obiteljske medicine i pedijatra, te izbornik mogućih profila kojima roditelj može pristupiti. Roditelj ima omogućen pristup svojem profilu i profilima svoje djece. Nakon biranja profila, otvara se nova stranica na kojoj se nalazi izbornik mogućnosti, te prostor za prikaz. \\
+		Unutar profila djeteta, izbornik sadrži sljedeće opcije:
+		\begin{packed_item}
+			
+			\item  Obavijesti - otvara prikaz svih obavijesti od pedijatra zaduženog za navedeno dijete
+			\item  Povijest liječničkih pregleda - otvara svojevrstan medicinski karton djeteta
+			\item  Generirane ispričnice - otvara pregled generiranih ispričnica koje pedijatar izdaje djetetu
+			\item  Nalazi iz laboratorija - otvara pregled nalaza djeteta koji su naknadno dobiveni iz laboratorija
+			\item  Specijalistički pregledi - otvara stranicu na kojoj pedijatar šalje potvrdu za specijalistički pregled i lokacije na kojima je moguće izvršiti navedeni pregled
+			\item  Učitavanje nalaza - opcija koja omogućuje \textit{upload} nalaza koji je dobiven pri eventualnom pregledu kod privatnika
+		
+		\end{packed_item}
+		Unutar profila roditelja, izbornik sadrži sljedeće opcije:
+			\begin{packed_item}
+			
+			\item  Obavijesti - otvara prikaz svih obavijesti od liječnika zaduženog za roditelja
+			\item  Povijest liječničkih pregleda - otvara svojevrstan medicinski karton roditelja
+			\item  Potvrđena bolovanja - otvara pregled bolovanja koja su odobrena od strane liječnika
+			\item  Specijalistički pregledi - otvara stranicu na kojoj liječnik šalje potvrdu za specijalistički pregled i lokacije na kojima je moguće izvršiti navedeni pregled
+			\item  Učitavanje nalaza - opcija koja omogućuje \textit{upload} nalaza koji je dobiven pri eventualnom pregledu kod privatnika
+			
+		\end{packed_item}
+		
+		\noindent Osim roditelja, postoje još tri vrste korisnika:
 		
 		\begin{packed_item}
 			
@@ -21,6 +46,8 @@
 			\item  administrator
 			
 		\end{packed_item}	
+		
+		\underbar{\textit{Pedijatar}} prijavom u sustav ulazi na stranicu na kojoj se nalazi izbornik 
 		
 		\section{Primjeri u \LaTeX u}
 		

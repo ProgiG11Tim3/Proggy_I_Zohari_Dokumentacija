@@ -1,21 +1,15 @@
 \chapter{Specifikacija programske potpore}
 		
 	\section{Funkcionalni zahtjevi}
-			
-			\textbf{\textit{dio 1. revizije}}\\
-			
-			\textit{Navesti \textbf{dionike} koji imaju \textbf{interes u ovom sustavu} ili  \textbf{su nositelji odgovornosti}. To su prije svega korisnici, ali i administratori sustava, naručitelji, razvojni tim.}\\
-				
-			\textit{Navesti \textbf{aktore} koji izravno \textbf{koriste} ili \textbf{komuniciraju sa sustavom}. Oni mogu imati inicijatorsku ulogu, tj. započinju određene procese u sustavu ili samo sudioničku ulogu, tj. obavljaju određeni posao. Za svakog aktora navesti funkcionalne zahtjeve koji se na njega odnose.}\\
-			
-			
 			\noindent \textbf{Dionici:}
 			
 			\begin{packed_enum}
 				
-				\item Dionik 1
-				\item Dionik 2				
-				\item ...
+				\item Vlasnik (naručitelj)
+				\item Roditelji				
+				\item Liječnici i pedijatri
+				\item Administrator
+				\item Razvojni tim
 				
 			\end{packed_enum}
 			
@@ -23,30 +17,77 @@
 			
 			
 			\begin{packed_enum}
-				\item  \underbar{Aktor 1 (inicijator) može:}
+				\item  \underbar{Neregistrirani/neprijavljeni korisnik (inicijator) može:}
 				
 				\begin{packed_enum}
 					
-					\item funkcionalnost 1
-					\item funkcionalnost 2
-					\begin{packed_enum}
-						
-						\item  podfunkcionalnost 1 
-						\item  podfunkcionalnost 2
-				
-					\end{packed_enum}
-					\item  funkcionalnost 3
+					\item pregledati katalog usluga aplikacije
+					\item vidjeti koje sve vrste korisnika aplikacija podržava
+					\item registrirati se u sustav, koristeći korisničko ime, email adresu, lozinku, ime, prezime i OIB, čime stvara osobni korisnički račun
+					\item prijaviti se u sustav putem korisničkog imena i lozinke
 					
 				\end{packed_enum}
 			
-				\item  \underbar{Aktor 2 (sudionik) može:}
+				\item  \underbar{Roditelj (inicijator) može:}
 				
 				\begin{packed_enum}
 					
-					\item funkcionalnost 1
-					\item funkcionalnost 2
+					\item pristupiti profilima svoje djece ili svojem profilu
+					\item otvarati i čitati obavijesti vezane uz svaki profil, poslane od liječnika ili pedijatra
+					\item vidjeti svoj ili djetetov medicinski karton te povijest pregleda
+					\item pristupiti ispričnicama generiranim za pojedino dijete te potvrdama o bolovanju
+					\item pristupiti naknadnim nalazima laboratorijskih pretraga
+					\item primiti informacije i narudžbe na specijalističke preglede, te vidjeti lokacije na kojima je moguće izvesti navedeni pregled
+					\item učitati (\textit{uploadati}) nalaze koje dobije prilikom pregleda u privatnoj ordinaciji
 					
 				\end{packed_enum}
+				
+				\item  \underbar{Pedijatar (inicijator) može:}
+				
+				\begin{packed_enum}
+					
+					\item pristupiti profilima djece kojima je dedicirani pedijatar
+					\item pristupiti liječničkim kartonima svih svojih pacijenata
+					\item prijaviti novo dijete prilikom prvog pregleda, koristeći osobne podatke djeteta (ime, prezime, OIB, datum rođenja), te OIB roditelja
+					\item za svakog pacijenta unijeti novi pregled
+					\item za svakog pacijenta generirati ispričnicu
+					\item za roditelje djece preporučiti bolovanje
+					\item naručiti dijete na specijalistički pregled, te preporučiti lokacije za izvedbu istog
+					
+				\end{packed_enum}
+				
+				\item  \underbar{Liječnik obiteljske medicine(inicijator) može:}
+				
+				\begin{packed_enum}
+					
+					\item pristupiti profilima roditelja kojima je liječnik
+					\item pristupiti liječničkim kartonima svih svojih pacijenata
+					\item za svakog pacijenta unijeti novi pregled
+					\item potvrditi ili odbiti preporuke za bolovanje roditelja
+					\item naručiti roditelja na specijalistički pregled, te preporučiti lokacije za izvedbu istog
+					
+				\end{packed_enum}
+				
+				\item  \underbar{Administrator(inicijator) može:}
+				
+				\begin{packed_enum}
+					
+					\item vidjeti popis svih registriranih korisnika i njihovih osobnih podataka
+					\item brisati korisnike
+					\item mijenjati veze između korisnika, npr. premjestiti dijete s profila jednog roditelja na profil drugog
+					\item stvarati profile liječnika i pedijatara
+					
+				\end{packed_enum}
+				
+				\item  \underbar{Baza podataka(sudionik):}
+				
+				\begin{packed_enum}
+					
+					\item pohranjuje sve podatke o korisnicima, njihove međusobne povezanosti i uloge
+					\item pohranjuje liječničke kartone i dijagnoze roditelja i djece
+					
+				\end{packed_enum}
+				
 			\end{packed_enum}
 			
 			\eject 
