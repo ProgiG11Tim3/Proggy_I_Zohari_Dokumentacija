@@ -95,16 +95,234 @@
 			
 				
 			\subsection{Obrasci uporabe}
-				
-				\textbf{\textit{dio 1. revizije}}
-				
-				\subsubsection{Opis obrazaca uporabe}
-					\textit{Funkcionalne zahtjeve razraditi u obliku obrazaca uporabe. Svaki obrazac je potrebno razraditi prema donjem predlošku. Ukoliko u nekom koraku može doći do odstupanja, potrebno je to odstupanje opisati i po mogućnosti ponuditi rješenje kojim bi se tijek obrasca vratio na osnovni tijek.}\\
-					
-
-					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ -$<$ime obrasca$>$}}
+					\noindent \underbar{\textbf{UC1 - Pregled usluga aplikacije}}
 					\begin{packed_item}
 	
+						\item \textbf{Glavni sudionik: }Neprijavljeni korisnik
+						\item  \textbf{Cilj:} Upoznati se s mogućnostima aplikacije
+						\item  \textbf{Sudionici:}-
+						\item  \textbf{Preduvjet:}-
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+	
+							\item Korisnik otvara web stranicu aplikacije
+							\item Korisnik može \textit{scrollati} po stranici, čitajući usluge
+						\end{packed_enum}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC2-Registracija}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Korisnik
+						\item  \textbf{Cilj:} Stvoriti korisnički račun roditelja za prijavu u sustav
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} -
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Na početnoj stranici aplikacije korisnik odabire opciju "Registriraj se"
+							\item Korisnik unosi osobne i korisničke podatke, te potvrđuje da se želi registrirati
+							\item Korisnik prima vizualnu obavijest o registraciji
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[2.a] Odabir već korištenog korisničkog imena, emaila ili OIB-a/nepravilan format unosa
+							\item[] \begin{packed_enum}
+								
+								\item Korisnika se obavještava o neuspjehu registracije, i vraća ga se na stranicu za registraciju
+								\item Korisnik ispravlja nepravilno unesene podatke
+								
+							\end{packed_enum}
+						\end{packed_item}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC3 - Prijava u sustav}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Roditelj/Pedijatar/Liječnik obiteljske medicine
+						\item  \textbf{Cilj:} Prijava u sustav čime se pristupa korisničkom profilu
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Registracija roditelja, postojanje profila pedijatra i liječnika u sustavu
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Korisnik odabire opciju "Prijavi se" na početnoj stranici aplikacije
+							\item Korisnik unosi svoje korisničko ime i lozinku
+							\item Nakon provjere unesenih podataka u bazi podataka, korisniku se otvara stranica profila
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[2.a] Nepravilan unos imena ili lozinke
+							\item[] \begin{packed_enum}
+								
+								\item Korisnik dobiva informaciju o neuspjeloj prijavi, i vraća ga se na stranicu za prijavu
+								\item Korisnik ispravlja nepravilno unesene podatke
+								
+							\end{packed_enum}	
+						\end{packed_item}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC4 - Pregled obavijesti (1)}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Roditelj
+						\item  \textbf{Cilj:} Informiranje roditelja o svim novostima vezanim uz profile njih i djece
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Prijava roditelja u sustav
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Roditelj čita popis obavijesti koji mu se prikazuje na lijevoj strani sučelja nakon uspješne prijave
+							
+						\end{packed_enum}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC5 - Odabir profila}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Roditelj
+						\item  \textbf{Cilj:} Pristup podacima i funkcijama pojedinog profila roditelja ili djeteta
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Prijava roditelja u sustav
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Roditelj odabire jedan od profila koji mu se prikazuju na desnoj strani sučelja nakon uspješne prijave
+							
+						\end{packed_enum}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC6 - Pregled obavijesti (2)}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Roditelj
+						\item  \textbf{Cilj:} Informiranje roditelja o novostima vezanim uz odabrani profil
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Odabir profila djeteta ili roditelja
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Roditelj čita popis obavijesti koji mu se prikazuje na desnoj strani sučelja nakon uspješne odabira profila \\
+
+						\end{packed_enum}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC7 - Pregled povijesti liječničkih pregleda}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Roditelj
+						\item  \textbf{Cilj:} Pregled povijesti liječničkih pregleda osobe čijem je profilu roditelj pristupio
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Odabir profila djeteta ili roditelja
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Na izborniku s lijeve strane sučelja roditelj odabire opciju "Povijest liječničkih pregleda"
+							\item Otvara se prikaz povijesti liječničkih pregleda na desnoj strani sučelja pored izbornika
+						\end{packed_enum}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC8 - Pregled generiranih ispričnica}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Roditelj
+						\item  \textbf{Cilj:} Pregled generiranih ispričnica za dijete čijem je profilu roditelj pristupio
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Odabir profila djeteta
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Na izborniku s lijeve strane sučelja roditelj odabire opciju "Generirane ispričnice"
+							\item Otvara se prikaz generiranih ispričnica na desnoj strani sučelja pored izbornika
+						\end{packed_enum}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC9 - Pregled laboratorijskih nalaza}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Roditelj
+						\item  \textbf{Cilj:} Pregled laboratorijskih nalaza za dijete čijem je profilu roditelj pristupio
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Odabir profila djeteta ili roditelja
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Na izborniku s lijeve strane sučelja roditelj odabire opciju "Nalazi iz laboratorija"
+							\item Otvara se popis laboratorijskih nalaza, na desnoj strani sučelja pored izbornika
+							\item Roditelj može odabrati jedan, koji se zatim preuzima iz baze podataka na uređaj roditelja
+						\end{packed_enum}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC10 - Specijalistički pregled}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Roditelj
+						\item  \textbf{Cilj:} Prikaz narudžbe na specijalističkei pregledi i lokacija za isti
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Odabir profila djeteta ili roditelja
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Na izborniku s lijeve strane sučelja roditelj odabire opciju "Specijalistički pregledi"
+							\item Otvara se prikaz popisa specijalističkih pregleda koji se moraju izvršiti, na desnoj strani sučelja pored izbornika
+							\item Roditelj odabire jedan
+							\item Otvara se prikaz s nazivom pregleda, uputama od pedijatra ili liječnika te karta s lokacijama na kojima je moguće izvesti imenovani pregled 
+						\end{packed_enum}
+
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC11 - Učitavanje nalaza}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Roditelj
+						\item  \textbf{Cilj:} \textit{Upload} nalaza dobivenog pri privatnom pregledu na sustav
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Odabir profila djeteta ili roditelja
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Na izborniku s lijeve strane sučelja roditelj odabire opciju "Učitavanje nalaza"
+							\item Otvara se novo sučelje s desne strane izbornika, na kojem se nalazi polje za poruku liječniku/pedijatru, gumb za odabir dokumenta, te gumb "Učitaj"
+							\item Roditelj piše poruku, odabire dokument i stišće gumb "Učitaj", čime se vrši \textit{upload} dokumenta i poruke
+							\item Roditelj dobiva vizualnu potvrdu da je učitavanje uspjelo
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							\item[3.a] Neuspjeh učitavanja dokumenta, zbog krivog formata dokumenta
+							\item[] \begin{packed_enum}
+								\item U slučaju pogrešnog formata dokumenta, ispisati će se upozorenje korisniku
+								\item Korisnik pokušava učitati drugu vrstu dokumenta
+							\end{packed_enum}
+							\item[3.b] Neuspjeh učitavanja dokumenta, zbog greške u pristupu serverima
+							\item[] \begin{packed_enum}
+								\item U slučaju pogreške u mreži, ispisuje se poruka korisniku da provjeri svoju mrežnu povezanost
+							\end{packed_enum}
+							
+						\end{packed_item}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ -$<$ime obrasca$>$}}
+					\begin{packed_item}
+						
 						\item \textbf{Glavni sudionik: }$<$sudionik$>$
 						\item  \textbf{Cilj:} $<$cilj$>$
 						\item  \textbf{Sudionici:} $<$sudionici$>$
@@ -112,7 +330,7 @@
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
-	
+							
 							\item $<$opis korak jedan$>$
 							\item $<$opis korak dva$>$
 							\item $<$opis korak tri$>$
@@ -123,7 +341,217 @@
 						\item  \textbf{Opis mogućih odstupanja:}
 						
 						\item[] \begin{packed_item}
-	
+							
+							\item[2.a] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
+							\item[] \begin{packed_enum}
+								
+								\item $<$opis rješenja mogućeg scenarija korak 1$>$
+								\item $<$opis rješenja mogućeg scenarija korak 2$>$
+								
+							\end{packed_enum}
+							\item[2.b] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
+							\item[3.a] $<$opis mogućeg scenarija odstupanja  u koraku 3$>$
+							
+						\end{packed_item}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ -$<$ime obrasca$>$}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }$<$sudionik$>$
+						\item  \textbf{Cilj:} $<$cilj$>$
+						\item  \textbf{Sudionici:} $<$sudionici$>$
+						\item  \textbf{Preduvjet:} $<$preduvjet$>$
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item $<$opis korak jedan$>$
+							\item $<$opis korak dva$>$
+							\item $<$opis korak tri$>$
+							\item $<$opis korak četiri$>$
+							\item $<$opis korak pet$>$
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[2.a] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
+							\item[] \begin{packed_enum}
+								
+								\item $<$opis rješenja mogućeg scenarija korak 1$>$
+								\item $<$opis rješenja mogućeg scenarija korak 2$>$
+								
+							\end{packed_enum}
+							\item[2.b] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
+							\item[3.a] $<$opis mogućeg scenarija odstupanja  u koraku 3$>$
+							
+						\end{packed_item}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ -$<$ime obrasca$>$}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }$<$sudionik$>$
+						\item  \textbf{Cilj:} $<$cilj$>$
+						\item  \textbf{Sudionici:} $<$sudionici$>$
+						\item  \textbf{Preduvjet:} $<$preduvjet$>$
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item $<$opis korak jedan$>$
+							\item $<$opis korak dva$>$
+							\item $<$opis korak tri$>$
+							\item $<$opis korak četiri$>$
+							\item $<$opis korak pet$>$
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[2.a] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
+							\item[] \begin{packed_enum}
+								
+								\item $<$opis rješenja mogućeg scenarija korak 1$>$
+								\item $<$opis rješenja mogućeg scenarija korak 2$>$
+								
+							\end{packed_enum}
+							\item[2.b] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
+							\item[3.a] $<$opis mogućeg scenarija odstupanja  u koraku 3$>$
+							
+						\end{packed_item}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ -$<$ime obrasca$>$}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }$<$sudionik$>$
+						\item  \textbf{Cilj:} $<$cilj$>$
+						\item  \textbf{Sudionici:} $<$sudionici$>$
+						\item  \textbf{Preduvjet:} $<$preduvjet$>$
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item $<$opis korak jedan$>$
+							\item $<$opis korak dva$>$
+							\item $<$opis korak tri$>$
+							\item $<$opis korak četiri$>$
+							\item $<$opis korak pet$>$
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[2.a] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
+							\item[] \begin{packed_enum}
+								
+								\item $<$opis rješenja mogućeg scenarija korak 1$>$
+								\item $<$opis rješenja mogućeg scenarija korak 2$>$
+								
+							\end{packed_enum}
+							\item[2.b] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
+							\item[3.a] $<$opis mogućeg scenarija odstupanja  u koraku 3$>$
+							
+						\end{packed_item}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ -$<$ime obrasca$>$}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }$<$sudionik$>$
+						\item  \textbf{Cilj:} $<$cilj$>$
+						\item  \textbf{Sudionici:} $<$sudionici$>$
+						\item  \textbf{Preduvjet:} $<$preduvjet$>$
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item $<$opis korak jedan$>$
+							\item $<$opis korak dva$>$
+							\item $<$opis korak tri$>$
+							\item $<$opis korak četiri$>$
+							\item $<$opis korak pet$>$
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[2.a] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
+							\item[] \begin{packed_enum}
+								
+								\item $<$opis rješenja mogućeg scenarija korak 1$>$
+								\item $<$opis rješenja mogućeg scenarija korak 2$>$
+								
+							\end{packed_enum}
+							\item[2.b] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
+							\item[3.a] $<$opis mogućeg scenarija odstupanja  u koraku 3$>$
+							
+						\end{packed_item}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ -$<$ime obrasca$>$}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }$<$sudionik$>$
+						\item  \textbf{Cilj:} $<$cilj$>$
+						\item  \textbf{Sudionici:} $<$sudionici$>$
+						\item  \textbf{Preduvjet:} $<$preduvjet$>$
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item $<$opis korak jedan$>$
+							\item $<$opis korak dva$>$
+							\item $<$opis korak tri$>$
+							\item $<$opis korak četiri$>$
+							\item $<$opis korak pet$>$
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[2.a] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
+							\item[] \begin{packed_enum}
+								
+								\item $<$opis rješenja mogućeg scenarija korak 1$>$
+								\item $<$opis rješenja mogućeg scenarija korak 2$>$
+								
+							\end{packed_enum}
+							\item[2.b] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
+							\item[3.a] $<$opis mogućeg scenarija odstupanja  u koraku 3$>$
+							
+						\end{packed_item}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ -$<$ime obrasca$>$}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }$<$sudionik$>$
+						\item  \textbf{Cilj:} $<$cilj$>$
+						\item  \textbf{Sudionici:} $<$sudionici$>$
+						\item  \textbf{Preduvjet:} $<$preduvjet$>$
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item $<$opis korak jedan$>$
+							\item $<$opis korak dva$>$
+							\item $<$opis korak tri$>$
+							\item $<$opis korak četiri$>$
+							\item $<$opis korak pet$>$
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
 							\item[2.a] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
 							\item[] \begin{packed_enum}
 								
