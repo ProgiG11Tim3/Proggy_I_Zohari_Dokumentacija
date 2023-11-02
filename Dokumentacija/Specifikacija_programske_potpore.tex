@@ -131,7 +131,7 @@
 						
 						\item[] \begin{packed_item}
 							
-							\item[2.a] Odabir već korištenog korisničkog imena, emaila ili OIB-a/nepravilan format unosa
+							\item[2.a] Odabir već korištenog korisničkog imena, email-a ili OIB-a/nepravilan format unosa
 							\item[] \begin{packed_enum}
 								
 								\item Korisnika se obavještava o neuspjehu registracije, i vraća ga se na stranicu za registraciju
@@ -272,7 +272,7 @@
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Roditelj
-						\item  \textbf{Cilj:} Prikaz narudžbe na specijalističkei pregledi i lokacija za isti
+						\item  \textbf{Cilj:} Prikaz narudžbi na specijalističke preglede i lokacija za iste
 						\item  \textbf{Sudionici:} Baza podataka
 						\item  \textbf{Preduvjet:} Odabir profila djeteta ili roditelja
 						\item  \textbf{Opis osnovnog tijeka:}
@@ -320,249 +320,300 @@
 						\end{packed_item}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ -$<$ime obrasca$>$}}
+					\noindent \underbar{\textbf{UC12 - Pregled pacijenata u sustavu}}
 					\begin{packed_item}
 						
-						\item \textbf{Glavni sudionik: }$<$sudionik$>$
-						\item  \textbf{Cilj:} $<$cilj$>$
-						\item  \textbf{Sudionici:} $<$sudionici$>$
-						\item  \textbf{Preduvjet:} $<$preduvjet$>$
+						\item \textbf{Glavni sudionik: }Liječnik/pedijatar
+						\item  \textbf{Cilj:} Mogućnost pregleda popisa svih pacijenata koji su prijavljeni kod liječnika/pedijatra
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Prijava u sustav kao liječnik/pedijatar
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
 							
-							\item $<$opis korak jedan$>$
-							\item $<$opis korak dva$>$
-							\item $<$opis korak tri$>$
-							\item $<$opis korak četiri$>$
-							\item $<$opis korak pet$>$
+							\item Nakon prijave u sustav odmah se otvara sučelje s popisom svih pacijenata
+							\item Popisu je također moguće pristupiti (ako je otvoren neki drugi prikaz) putem izbornika na lijevoj strani sučelja
+							\item U slučaju da je popis predug, njime je moguće \textit{scrollati}
+						\end{packed_enum}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC13 - Pregled podataka pacijenta}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Liječnik/pedijatar
+						\item  \textbf{Cilj:} Otvaranje profila pacijenta na pregled
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Otvoren pregled popisa svih pacijenata
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Liječnik/pedijatar može unutar popisa odabrati pacijenta
+							\item Otvara se prikaz profila tog pacijenta s osobnim podacima, opcijom za otvaranje medicinskog kartona tog pacijenta, te opcijom za unos novog pregleda
+						\end{packed_enum}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC14 - Otvaranje kartona pacijenta}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Liječnik/pedijatar
+						\item  \textbf{Cilj:} Otvaranje medicinskog kartona pacijenta na pregled
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Odabran pacijent
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Liječnik/pedijatar na profilu odabranog pacijenta pritišće opciju za pregled kartona
+							\item Otvara se prikaz medicinskog kartona pacijenta
+						\end{packed_enum}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC15 - Unos novog pregleda}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Liječnik/pedijatar
+						\item  \textbf{Cilj:} Unos novog pregleda za odabranog pacijenta
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Odabran pacijent
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Liječnik/pedijatar na profilu odabranog pacijenta pritišće opciju za unos novog pregleda
+							\item Otvara se prikaz za unos podataka o pregledu, s poljima vezanim uz podatke pacijenta već ispunjenima
+							\item Liječnik unosi podatke o pregledu, te pritišće opciju za unos
+						\end{packed_enum}
+					\end{packed_item}
+					
+					
+					\noindent \underbar{\textbf{UC16 - Generiranje ispričnice}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Pedijatar
+						\item  \textbf{Cilj:} Generiranje i slanje ispričnice za pacijenta
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Odabran pacijent
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Pedijatar na profilu pacijenta bira opciju za generiranje ispričnice
+							\item Otvara se sučelje s unesenim podacima pacijenta, te poljima za unos imena bolesti i vremena trajanja ispričnice
+							\item Pedijatar unosi podatke i pritišće opciju za slanje
+						\end{packed_enum}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC17 - Generiranje preporuke o bolovanju}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Pedijatar
+						\item  \textbf{Cilj:} Generiranje i slanje preporuke o bolovanju za roditelja pacijenta
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Odabran pacijent
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Pedijatar na profilu pacijenta bira opciju za generiranje preporuke o bolovanju
+							\item Otvara se sučelje s unesenim podacima roditelja pacijenta, te poljima za unos razloga za bolovanjem i vremena trajanja bolovanja
+							\item Pedijatar unosi podatke i pritišće opciju za slanje
+						\end{packed_enum}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC18 - Slanje obavijesti roditelju}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Pedijatar
+						\item  \textbf{Cilj:} Slanje obavijesti roditelju
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Odabran pacijent
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Pedijatar na profilu pacijenta bira opciju za slanje obavijesti roditelju pacijenta
+							\item Otvara se sučelje s poljima za unos naslova obavijesti, te poljem za unos dužeg teksta/poruke obavijesti
+							\item Pedijatar unosi podatke i pritišće opciju za slanje
+						\end{packed_enum}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC19 - Specijalistički pregledi}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Liječnik/pedijatar
+						\item  \textbf{Cilj:} Slanje potvrde i lokacija za specijalistički pregled
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Odabran pacijent
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Pedijatar na profilu pacijenta bira opciju "Specijalistički pregled"
+							\item Otvara se sučelje s unesenim podacima pacijenta, te poljima za unos vrste specijalističkog pregleda i za unos mogućih lokacija na kojima se može izvesti pregled
+							\item Liječnik/pedijatar unosi tražene podatke te pritišće opciju za slanje
+						\end{packed_enum}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC20 - Pregled nalaza iz privatnih ustanova}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Liječnik/pedijatar
+						\item  \textbf{Cilj:} Pregled nalaza iz privatnih ustanova
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Odabran pacijent
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Liječnik/pedijatar na profilu pacijenta bira opciju "Nalazi iz privatnih ustanova"
+							\item Otvara se prikaz s popisom nalaza, na kojima piše datum te ime i prezime pacijenta
+							\item Pritiskom na jedan nalaz otvara se detaljan prikaz
+						\end{packed_enum}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC21 - Povratna informacija na nalaz}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Liječnik/pedijatar
+						\item  \textbf{Cilj:} Slanje povratne informacije vezane uz nalaz iz privatne ustanove
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Otvoren nalaz iz privatne ustanove
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Liječnik/pedijatar pritišće na opciju "Povratna informacija" koja se nalazi na dnu nalaza
+							\item Otvara se sučelje s poljima za unos naslova obavijesti, te poljem za unos dužeg teksta poruke
+							\item Liječnik/pedijatar unosi podatke i pritišće opciju za slanje
+						\end{packed_enum}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC22 - Unos novog pacijenta}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Liječnik/pedijatar
+						\item  \textbf{Cilj:} Unos novog pacijenta pri prvom pregledu
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Prijava u sustav kao liječnik/pedijatar
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Liječnik/pedijatar na izborniku s lijeve strane sučelja bira opciju "Novi pacijent"
+							\item Otvara se sučelje s poljima za osobne podatke pacijenta (u slučaju roditelja samo OIB, jer roditelj sam registrira ostale podatke), s poljem za OIB roditelja (u slučaju kada je novi pacijent dijete), te s poljem za kontakt(email) škole/vrtića
+							\item Liječnik/pedijatar unosi podatke u polja
+							\item Liječnik/pedijatar pritišće gumb "Unesi"
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						
 						\item[] \begin{packed_item}
-							
-							\item[2.a] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
+							\item[3.a] Neispravan OIB
 							\item[] \begin{packed_enum}
-								
-								\item $<$opis rješenja mogućeg scenarija korak 1$>$
-								\item $<$opis rješenja mogućeg scenarija korak 2$>$
-								
-							\end{packed_enum}
-							\item[2.b] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
-							\item[3.a] $<$opis mogućeg scenarija odstupanja  u koraku 3$>$
-							
+								\item U slučaju pogrešno unesenog OIB-a (OIB ne postoji), liječnik/pedijatar dobiva obavijest o pogrešci
+								\item Liječnik/pedijatar ispravlja grešku
+							\end{packed_enum}	
 						\end{packed_item}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ -$<$ime obrasca$>$}}
+					\noindent \underbar{\textbf{UC23 - Potvrda preporuka za bolovanje}}
 					\begin{packed_item}
 						
-						\item \textbf{Glavni sudionik: }$<$sudionik$>$
-						\item  \textbf{Cilj:} $<$cilj$>$
-						\item  \textbf{Sudionici:} $<$sudionici$>$
-						\item  \textbf{Preduvjet:} $<$preduvjet$>$
+						\item \textbf{Glavni sudionik: }Liječnik obiteljske medicine
+						\item  \textbf{Cilj:} Potvrda preporuka za bolovanje roditelja koje je poslao pedijatar
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Prijava u sustav kao liječnik/pedijatar
+						\\
+						\\
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
 							
-							\item $<$opis korak jedan$>$
-							\item $<$opis korak dva$>$
-							\item $<$opis korak tri$>$
-							\item $<$opis korak četiri$>$
-							\item $<$opis korak pet$>$
+							\item Liječnik/pedijatar na izborniku s lijeve strane sučelja bira opciju "Preporuke za bolovanje"
+							\item Otvara se sučelje s popisom preporuka za bolovanje, gdje se pritiskom na jednu otvara detaljan prikaz podataka pacijenta, trajanja bolovanja i opis razloga za preporukom
+							\item Liječnik pritišće gumb za prihvaćanje ili gumb za odbijanje
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
-						
-						\item[] \begin{packed_item}
-							
-							\item[2.a] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
-							\item[] \begin{packed_enum}
-								
-								\item $<$opis rješenja mogućeg scenarija korak 1$>$
-								\item $<$opis rješenja mogućeg scenarija korak 2$>$
-								
-							\end{packed_enum}
-							\item[2.b] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
-							\item[3.a] $<$opis mogućeg scenarija odstupanja  u koraku 3$>$
-							
-						\end{packed_item}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ -$<$ime obrasca$>$}}
+					\noindent \underbar{\textbf{UC24 - Stvaranje profila liječnika/pedijatra}}
 					\begin{packed_item}
 						
-						\item \textbf{Glavni sudionik: }$<$sudionik$>$
-						\item  \textbf{Cilj:} $<$cilj$>$
-						\item  \textbf{Sudionici:} $<$sudionici$>$
-						\item  \textbf{Preduvjet:} $<$preduvjet$>$
+						\item \textbf{Glavni sudionik: }Administrator
+						\item  \textbf{Cilj:} Stvaranje profila liječnika obiteljske medicine i pedijatra
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Prijava u sustav kao administrator
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
 							
-							\item $<$opis korak jedan$>$
-							\item $<$opis korak dva$>$
-							\item $<$opis korak tri$>$
-							\item $<$opis korak četiri$>$
-							\item $<$opis korak pet$>$
+							\item Administrator bira opciju za stvaranje novog liječnika ili pedijatra
+							\item Otvara se sučelje s poljima za unos osobnih i korisničkih podataka
+							\item Administrator ispunjava polja i pritišće opciju "Stvori profil"
 						\end{packed_enum}
-						
-						\item  \textbf{Opis mogućih odstupanja:}
-						
-						\item[] \begin{packed_item}
-							
-							\item[2.a] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
-							\item[] \begin{packed_enum}
-								
-								\item $<$opis rješenja mogućeg scenarija korak 1$>$
-								\item $<$opis rješenja mogućeg scenarija korak 2$>$
-								
-							\end{packed_enum}
-							\item[2.b] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
-							\item[3.a] $<$opis mogućeg scenarija odstupanja  u koraku 3$>$
-							
-						\end{packed_item}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ -$<$ime obrasca$>$}}
+					\noindent \underbar{\textbf{UC25 - Pregled korisnika}}
 					\begin{packed_item}
 						
-						\item \textbf{Glavni sudionik: }$<$sudionik$>$
-						\item  \textbf{Cilj:} $<$cilj$>$
-						\item  \textbf{Sudionici:} $<$sudionici$>$
-						\item  \textbf{Preduvjet:} $<$preduvjet$>$
+						\item \textbf{Glavni sudionik: }Administrator
+						\item  \textbf{Cilj:} Pregled svih korisnika aplikacije, po kategorijama
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Prijava u sustav kao administrator
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
 							
-							\item $<$opis korak jedan$>$
-							\item $<$opis korak dva$>$
-							\item $<$opis korak tri$>$
-							\item $<$opis korak četiri$>$
-							\item $<$opis korak pet$>$
+							\item Administrator bira opciju za prikaz korisnika
+							\item Otvara se lista ispravno registriranih korisnika, po kategorijama
 						\end{packed_enum}
-						
-						\item  \textbf{Opis mogućih odstupanja:}
-						
-						\item[] \begin{packed_item}
-							
-							\item[2.a] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
-							\item[] \begin{packed_enum}
-								
-								\item $<$opis rješenja mogućeg scenarija korak 1$>$
-								\item $<$opis rješenja mogućeg scenarija korak 2$>$
-								
-							\end{packed_enum}
-							\item[2.b] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
-							\item[3.a] $<$opis mogućeg scenarija odstupanja  u koraku 3$>$
-							
-						\end{packed_item}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ -$<$ime obrasca$>$}}
+					\noindent \underbar{\textbf{UC26 - Odabir korisnika}}
 					\begin{packed_item}
 						
-						\item \textbf{Glavni sudionik: }$<$sudionik$>$
-						\item  \textbf{Cilj:} $<$cilj$>$
-						\item  \textbf{Sudionici:} $<$sudionici$>$
-						\item  \textbf{Preduvjet:} $<$preduvjet$>$
+						\item \textbf{Glavni sudionik: }Administrator
+						\item  \textbf{Cilj:} Pregled podataka korisnika
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Otvoren pregled korisnika
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
-							
-							\item $<$opis korak jedan$>$
-							\item $<$opis korak dva$>$
-							\item $<$opis korak tri$>$
-							\item $<$opis korak četiri$>$
-							\item $<$opis korak pet$>$
+							\item Administrator bira profil korisnika kojem želi pristupiti
+							\item Otvara se prikaz osobnih, korisničkih i medicinskih (npr. zaduženi pedijatar) podataka nekog korisnika
 						\end{packed_enum}
-						
-						\item  \textbf{Opis mogućih odstupanja:}
-						
-						\item[] \begin{packed_item}
-							
-							\item[2.a] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
-							\item[] \begin{packed_enum}
-								
-								\item $<$opis rješenja mogućeg scenarija korak 1$>$
-								\item $<$opis rješenja mogućeg scenarija korak 2$>$
-								
-							\end{packed_enum}
-							\item[2.b] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
-							\item[3.a] $<$opis mogućeg scenarija odstupanja  u koraku 3$>$
-							
-						\end{packed_item}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ -$<$ime obrasca$>$}}
+					\noindent \underbar{\textbf{UC27 - Brisanje korisnika}}
 					\begin{packed_item}
 						
-						\item \textbf{Glavni sudionik: }$<$sudionik$>$
-						\item  \textbf{Cilj:} $<$cilj$>$
-						\item  \textbf{Sudionici:} $<$sudionici$>$
-						\item  \textbf{Preduvjet:} $<$preduvjet$>$
+						\item \textbf{Glavni sudionik: }Administrator
+						\item  \textbf{Cilj:} Brisanje računa korisnika
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Odabran profil korisnika
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
-							
-							\item $<$opis korak jedan$>$
-							\item $<$opis korak dva$>$
-							\item $<$opis korak tri$>$
-							\item $<$opis korak četiri$>$
-							\item $<$opis korak pet$>$
+							\item Administrator na profilu pritišće opciju "Izbriši profil"
 						\end{packed_enum}
-						
-						\item  \textbf{Opis mogućih odstupanja:}
-						
-						\item[] \begin{packed_item}
-							
-							\item[2.a] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
-							\item[] \begin{packed_enum}
-								
-								\item $<$opis rješenja mogućeg scenarija korak 1$>$
-								\item $<$opis rješenja mogućeg scenarija korak 2$>$
-								
-							\end{packed_enum}
-							\item[2.b] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
-							\item[3.a] $<$opis mogućeg scenarija odstupanja  u koraku 3$>$
-							
-						\end{packed_item}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ -$<$ime obrasca$>$}}
+					\noindent \underbar{\textbf{UC28 - Promjena podataka korisnika}}
 					\begin{packed_item}
 						
-						\item \textbf{Glavni sudionik: }$<$sudionik$>$
-						\item  \textbf{Cilj:} $<$cilj$>$
-						\item  \textbf{Sudionici:} $<$sudionici$>$
-						\item  \textbf{Preduvjet:} $<$preduvjet$>$
+						\item \textbf{Glavni sudionik: }Administrator
+						\item  \textbf{Cilj:} Promjena osobnih, korisničkih i medicinskih (npr. zaduženi pedijatar) podataka nekog korisnika
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Otvoren pregled korisnika
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
-							
-							\item $<$opis korak jedan$>$
-							\item $<$opis korak dva$>$
-							\item $<$opis korak tri$>$
-							\item $<$opis korak četiri$>$
-							\item $<$opis korak pet$>$
+							\item Administrator na profilu pritišće opciju "Uredi profil"
+							\item Otvara se sučelje s ispunjenim poljima za tekst, gdje se nalaze pripadni podaci o korisniku
+							\item Administrator uređuje podatke, i na kraju pritišće opciju "Spremi promjene"
 						\end{packed_enum}
-						
-						\item  \textbf{Opis mogućih odstupanja:}
-						
-						\item[] \begin{packed_item}
-							
-							\item[2.a] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
-							\item[] \begin{packed_enum}
-								
-								\item $<$opis rješenja mogućeg scenarija korak 1$>$
-								\item $<$opis rješenja mogućeg scenarija korak 2$>$
-								
-							\end{packed_enum}
-							\item[2.b] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
-							\item[3.a] $<$opis mogućeg scenarija odstupanja  u koraku 3$>$
-							
-						\end{packed_item}
 					\end{packed_item}
 				
 					
