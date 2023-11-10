@@ -6,6 +6,7 @@
 			\begin{packed_enum}
 				
 				\item Vlasnik (naručitelj)
+				\item Neregistrirani korisnik
 				\item Roditelji				
 				\item Liječnici i pedijatri
 				\item Administrator
@@ -95,7 +96,7 @@
 			
 				
 			\subsection{Obrasci uporabe}
-					\noindent \underbar{\textbf{UC1 - Pregled usluga aplikacije}}
+					\noindent \underbar{\textbf{UC1 - Pregledaj usluge aplikacije}}
 					\begin{packed_item}
 	
 						\item \textbf{Glavni sudionik: }Neprijavljeni korisnik
@@ -107,22 +108,23 @@
 						\item[] \begin{packed_enum}
 	
 							\item Korisnik otvara web stranicu aplikacije
-							\item Korisnik može \textit{scrollati} po stranici, čitajući usluge
+							\item Korisnik pregledava sadržaj stranice
 						\end{packed_enum}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC2-Registracija}}
+					\noindent \underbar{\textbf{UC2-Registriraj se}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Korisnik
 						\item  \textbf{Cilj:} Stvoriti korisnički račun roditelja za prijavu u sustav
 						\item  \textbf{Sudionici:} Baza podataka
-						\item  \textbf{Preduvjet:} -
+						\item  \textbf{Preduvjet:} Otvorena početna stranica aplikacije
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
 							
 							\item Na početnoj stranici aplikacije korisnik odabire opciju "Registriraj se"
+							\item Sustav otvara ekran registracije
 							\item Korisnik unosi osobne i korisničke podatke, te potvrđuje da se želi registrirati
 							\item Korisnik prima vizualnu obavijest o registraciji
 						\end{packed_enum}
@@ -135,13 +137,13 @@
 							\item[] \begin{packed_enum}
 								
 								\item Korisnika se obavještava o neuspjehu registracije, i vraća ga se na stranicu za registraciju
-								\item Korisnik ispravlja nepravilno unesene podatke
+								\item Korisnik ispravlja nepravilno unesene podatke, te ponovno potvrđuje unos
 								
 							\end{packed_enum}
 						\end{packed_item}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC3 - Prijava u sustav}}
+					\noindent \underbar{\textbf{UC3 - Prijavi se u sustav}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Roditelj/Pedijatar/Liječnik obiteljske medicine
@@ -153,8 +155,9 @@
 						\item[] \begin{packed_enum}
 							
 							\item Korisnik odabire opciju "Prijavi se" na početnoj stranici aplikacije
+							\item Sustav otvara ekran prijave
 							\item Korisnik unosi svoje korisničko ime i lozinku
-							\item Nakon provjere unesenih podataka u bazi podataka, korisniku se otvara stranica profila
+							\item Nakon provjere unesenih podataka u bazi podataka, korisniku se otvara početna stranica profila
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
@@ -171,7 +174,7 @@
 						\end{packed_item}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC4 - Pregled obavijesti (1)}}
+					\noindent \underbar{\textbf{UC4 - Pregledaj obavijesti (1)}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Roditelj
@@ -182,12 +185,12 @@
 						
 						\item[] \begin{packed_enum}
 							
-							\item Roditelj čita popis obavijesti koji mu se prikazuje na lijevoj strani sučelja nakon uspješne prijave
+							\item Roditelj čita popis obavijesti (vezanih uz sve profile računa roditelja, dakle osobni profil i sva djeca) koji mu se prikazuje na lijevoj strani sučelja nakon uspješne prijave
 							
 						\end{packed_enum}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC5 - Odabir profila}}
+					\noindent \underbar{\textbf{UC5 - Odaberi profil}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Roditelj
@@ -199,11 +202,12 @@
 						\item[] \begin{packed_enum}
 							
 							\item Roditelj odabire jedan od profila koji mu se prikazuju na desnoj strani sučelja nakon uspješne prijave
+							\item Sustav pronalazi podatke o kliknutom profilu, te otvara stranicu odabranog profila
 							
 						\end{packed_enum}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC6 - Pregled obavijesti (2)}}
+					\noindent \underbar{\textbf{UC6 - Pregledaj obavijesti (2)}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Roditelj
@@ -214,12 +218,12 @@
 						
 						\item[] \begin{packed_enum}
 							
-							\item Roditelj čita popis obavijesti koji mu se prikazuje na desnoj strani sučelja nakon uspješne odabira profila \\
+							\item Roditelj čita popis obavijesti (isključivo vezanih za odabrani profil) koji mu se prikazuje na desnoj strani sučelja nakon uspješne odabira profila \\
 
 						\end{packed_enum}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC7 - Pregled povijesti liječničkih pregleda}}
+					\noindent \underbar{\textbf{UC7 - Pregledaj povijest liječničkih pregleda}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Roditelj
@@ -235,7 +239,7 @@
 						\end{packed_enum}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC8 - Pregled generiranih ispričnica}}
+					\noindent \underbar{\textbf{UC8 - Pregledaj generirane ispričnice}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Roditelj
@@ -251,7 +255,7 @@
 						\end{packed_enum}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC9 - Pregled laboratorijskih nalaza}}
+					\noindent \underbar{\textbf{UC9 - Pregledaj laboratorijske nalaze}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Roditelj
@@ -264,11 +268,11 @@
 							
 							\item Na izborniku s lijeve strane sučelja roditelj odabire opciju "Nalazi iz laboratorija"
 							\item Otvara se popis laboratorijskih nalaza, na desnoj strani sučelja pored izbornika
-							\item Roditelj može odabrati jedan, koji se zatim preuzima iz baze podataka na uređaj roditelja
+							\item Roditelj odabire jedan, koji se zatim preuzima iz baze podataka na uređaj roditelja
 						\end{packed_enum}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC10 - Specijalistički pregled}}
+					\noindent \underbar{\textbf{UC10 - Pregledaj specijalističke preglede}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Roditelj
@@ -287,7 +291,7 @@
 
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC11 - Učitavanje nalaza}}
+					\noindent \underbar{\textbf{UC11 - Učitaj nalaz}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Roditelj
@@ -320,7 +324,7 @@
 						\end{packed_item}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC12 - Pregled pacijenata u sustavu}}
+					\noindent \underbar{\textbf{UC12 - Pregledaj pacijente u sustavu}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Liječnik/pedijatar
@@ -337,7 +341,7 @@
 						\end{packed_enum}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC13 - Pregled podataka pacijenta}}
+					\noindent \underbar{\textbf{UC13 - Pregledaj podatke pacijenta}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Liječnik/pedijatar
@@ -353,7 +357,7 @@
 						\end{packed_enum}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC14 - Otvaranje kartona pacijenta}}
+					\noindent \underbar{\textbf{UC14 - Otvori karton pacijenta}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Liječnik/pedijatar
@@ -369,7 +373,7 @@
 						\end{packed_enum}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC15 - Unos novog pregleda}}
+					\noindent \underbar{\textbf{UC15 - Unesi novi pregled}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Liječnik/pedijatar
@@ -387,7 +391,7 @@
 					\end{packed_item}
 					
 					
-					\noindent \underbar{\textbf{UC16 - Generiranje ispričnice}}
+					\noindent \underbar{\textbf{UC16 - Generiraj ispričnicu}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Pedijatar
@@ -404,7 +408,7 @@
 						\end{packed_enum}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC17 - Generiranje preporuke o bolovanju}}
+					\noindent \underbar{\textbf{UC17 - Generiraj preporuku o bolovanju}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Pedijatar
@@ -421,7 +425,7 @@
 						\end{packed_enum}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC18 - Slanje obavijesti roditelju}}
+					\noindent \underbar{\textbf{UC18 - Pošalji obavijest roditelju}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Pedijatar
@@ -438,7 +442,7 @@
 						\end{packed_enum}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC19 - Specijalistički pregledi}}
+					\noindent \underbar{\textbf{UC19 - Zakaži specijalistički pregled}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Liječnik/pedijatar
@@ -455,7 +459,7 @@
 						\end{packed_enum}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC20 - Pregled nalaza iz privatnih ustanova}}
+					\noindent \underbar{\textbf{UC20 - Pregledaj nalaze iz privatnih ustanova}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Liječnik/pedijatar
@@ -472,7 +476,7 @@
 						\end{packed_enum}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC21 - Povratna informacija na nalaz}}
+					\noindent \underbar{\textbf{UC21 - Pošalji povratnu informaciju}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Liječnik/pedijatar
@@ -489,7 +493,7 @@
 						\end{packed_enum}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC22 - Unos novog pacijenta}}
+					\noindent \underbar{\textbf{UC22 - Unesi novog pacijenta}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Liječnik/pedijatar
@@ -517,7 +521,7 @@
 						\end{packed_item}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC23 - Potvrda preporuka za bolovanje}}
+					\noindent \underbar{\textbf{UC23 - Potvrdi preporuku za bolovanje}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Liječnik obiteljske medicine
@@ -538,7 +542,7 @@
 						\item  \textbf{Opis mogućih odstupanja:}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC24 - Stvaranje profila liječnika/pedijatra}}
+					\noindent \underbar{\textbf{UC24 - Stvori profil liječnika/pedijatra}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Administrator
@@ -555,7 +559,7 @@
 						\end{packed_enum}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC25 - Pregled korisnika}}
+					\noindent \underbar{\textbf{UC25 - Pregledaj korisnike}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Administrator
@@ -571,7 +575,7 @@
 						\end{packed_enum}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC26 - Odabir korisnika}}
+					\noindent \underbar{\textbf{UC26 - Odaberi korisnika}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Administrator
@@ -586,7 +590,7 @@
 						\end{packed_enum}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC27 - Brisanje korisnika}}
+					\noindent \underbar{\textbf{UC27 - Obriši korisnika}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Administrator
@@ -600,7 +604,7 @@
 						\end{packed_enum}
 					\end{packed_item}
 					
-					\noindent \underbar{\textbf{UC28 - Promjena podataka korisnika}}
+					\noindent \underbar{\textbf{UC28 - Promjeni podatke korisnika}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Administrator
