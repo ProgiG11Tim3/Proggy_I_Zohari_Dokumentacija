@@ -8,23 +8,34 @@
 		\item 	\textit{organizaciju sustava s najviše razine apstrakcije (npr. klijent-poslužitelj, baza podataka, datotečni sustav, grafičko sučelje)}
 		\item 	\textit{organizaciju aplikacije (npr. slojevi frontend i backend, MVC arhitektura) }		
 	\end{itemize}
-
-	
 		
+		\text	Arhitektura našeg projekta podijeljena je na tri generalna dijela:
+		\begin{packed_item}
+			\item yuh
+			\item yuh
+			\item yuh
+		\end{packed_item}
 
 		
 
 				
 		\section{Baza podataka}
 			
-			\textbf{\textit{dio 1. revizije}}\\
-			
-		\textit{Potrebno je opisati koju vrstu i implementaciju baze podataka ste odabrali, glavne komponente od kojih se sastoji i slično.}
+			\text Za potrebe našeg projekta koristili smo relacijsku bazu podataka napisanu u programskom jeziku Java, pokrenutu \textit{engine-om} H2. Prednost te vrste baze podataka jest jednostavnost modeliranja pravog svijeta na temelju relacija. Zadaća baze podataka u projektu jest pohrana, izmjena i dohvat podataka koji se zatim obrađuju. Baza podataka sastoji se od entiteta:
+			\begin{packed_item}
+				\item Roditelj
+				\item Dijete
+				\item Pedijatar
+				\item Liječnik obiteljske medicine
+				\item Medicinski karton
+				\item Pregled
+				\item Nalaz
+			\end{packed_item}
 		
 			\subsection{Opis tablica}
 			
 
-				\textit{Svaku tablicu je potrebno opisati po zadanom predlošku. Lijevo se nalazi točno ime varijable u bazi podataka, u sredini se nalazi tip podataka, a desno se nalazi opis varijable. Svjetlozelenom bojom označite primarni ključ. Svjetlo plavom označite strani ključ}
+				\textbf{Roditelj} - Entitet sadržava sve podatke koje roditelj unosi prilikom registracije. Oni su: OIB, ime i prezime, datum rođenja, korisničko ime, lozinka, broj telefona, e-mail, poštanski broj, mjesto prebivališta, e-mail poslodavca te šifra liječnika. Entitet roditelj u odnosu je \textit{Many-to-One} s entitetom Liječnik obiteljske medicine preko šifre tog liječnika, u odnosu \textit{One-to-Many} sa entitetom Dijete, putem vlastitog OIB-a, te u odnosu \textit{One-to-One} s entitetom Medicinski karton, putem vlastitog OIB-a.
 				
 				
 				\begin{longtblr}[
@@ -32,19 +43,140 @@
 					entry=none
 					]{
 						width = \textwidth,
-						colspec={|X[6,l]|X[6, l]|X[20, l]|}, 
+						colspec={|X[10,l]|X[6, l]|X[20, l]|}, 
 						rowhead = 1,
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
-					\hline \SetCell[c=3]{c}{\textbf{korisnik - ime tablice}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}IDKorisnik & INT	&  	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  	\\ \hline
-					korisnickoIme	& VARCHAR &   	\\ \hline 
-					email & VARCHAR &   \\ \hline 
-					ime & VARCHAR	&  		\\ \hline 
-					\SetCell{LightBlue} primjer	& VARCHAR &   	\\ \hline 
+					\hline \SetCell[c=3]{c}{\textbf{Roditelj}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}OIB & CHAR(11)	&  	Jedinstveni identifikator roditelja	\\ \hline
+					nameParent	& VARCHAR &   Ime roditelja	\\ \hline 
+					lastNameParent	& VARCHAR &   Prezime roditelja	\\ \hline 
+					dateOfBirthParent	& DATE &  Datum rođenja roditelja 	\\ \hline 
+					userNameParent	& VARCHAR &   Korisničko ime računa	\\ \hline 
+					passwordParent	& VARCHAR &   Zaporka računa	\\ \hline 
+					phoneNumberParent	& VARCHAR &   Broj telefona roditelja	\\ \hline 
+					emailParent	& VARCHAR &   E-mail roditelja	\\ \hline 
+					postalCode & INT &  Poštanski broj mjesta stanovanja \\ \hline 
+					placeOfResidence & VARCHAR	&  	Mjesto stanovanja roditelja	\\ \hline 
+					employerEmail	& VARCHAR &   E-mail poslodavca roditelja	\\ \hline 
+					\SetCell{LightBlue}doctorId	& CHAR(5) &   Identifikator L.O.M.-a roditelja	\\ \hline
 				\end{longtblr}
 				
+				\textbf{Dijete} - Entitet sadržava sve podatke koje unosi pedijatar prilikom prvog pregleda djeteta. Oni su: OIB, OIB roditelja, šifra pedijatra, ime i prezime, datum rođenja, naziv škole/vrtića te e-mail škole/vrtića. Entitet dijete u odnosu je \textit{Many-to-One} sa entitetom Roditelj, putem roditeljevog OIB-a, u odnosu \textit{Many-to-One} s entitetom Pedijatar putem pedijatrovog ID-a, te u odnosu \textit{One-to-One} s entitetom Medicinski karton, putem vlastitog OIB-a.
 				
-			
+				\begin{longtblr}[
+					label=none,
+					entry=none
+					]{
+						width = \textwidth,
+						colspec={|X[11,l]|X[6, l]|X[20, l]|}, 
+						rowhead = 1,
+					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
+					\hline \SetCell[c=3]{c}{\textbf{Dijete}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}OIB & CHAR(11)	&  	Jedinstveni identifikator djeteta 	\\ \hline
+					nameChild	& VARCHAR &   Ime djeteta	\\ \hline 
+					lastNameChild	& VARCHAR &   Prezime djeteta	\\ \hline 
+					dateOfBirthChild	& DATE &   Datum rođenja djeteta	\\ \hline 
+					educationalInstitution	& VARCHAR &   Ime škole/vrtića djeteta	\\ \hline 
+					emailEduInstitution & VARCHAR &  E-mail škole/vrtića \\ \hline 
+					\SetCell{LightBlue}parentOib & CHAR(11)	&  Jedinstveni identifikator roditelja	\\ \hline 
+					\SetCell{LightBlue} pediatricanId	& CHAR(5) &   Jedinstveni identifikator pedijatra	\\ \hline 
+				\end{longtblr}
+				
+				\textbf{Pedijatar} - Entitet sadržava sve podatke koje unosi administrator prilikom registracije pedijatra u sustav. Oni su: šifra pedijatra, ime i prezime, datum rođenja, korisničko ime, lozinka, broj telefona, e-mail. Entitet pedijatar u odnosu je \textit{One-to-Many} s entitetom Dijete putem vlastite šifre.
+				
+				\begin{longtblr}[
+					label=none,
+					entry=none
+					]{
+						width = \textwidth,
+						colspec={|X[12,l]|X[6, l]|X[20, l]|}, 
+						rowhead = 1,
+					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
+					\hline \SetCell[c=3]{c}{\textbf{Pedijatar}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}pediatricianId & CHAR(5)	&  	Jedinstveni identifikator pedijatra	\\ \hline
+					namePediatirican	& VARCHAR &   Ime pedijatra	\\ \hline 
+					lastNamePediatirican	& VARCHAR &   Prezime pedijatra	\\ \hline 
+					dateOfBirthPediatirican	& DATE &   Datum rođenja pedijatra	\\ \hline 
+					userNamePediatirican	& VARCHAR &   Korisničko ime računa	\\ \hline 
+					passwordPediatrician & VARCHAR &  Zaporka računa \\ \hline 
+					phoneNumPediatrician	& VARCHAR &   Broj telefona pedijatra	\\ \hline 
+					emailPediatrician	& VARCHAR &   E-mail pedijatra	\\ \hline
+					
+				\end{longtblr}
+				
+				\textbf{Liječnik obiteljske medicine} - Entitet sadržava sve podatke koje unosi administrator prilikom registracije LOM-a u sustav. Oni su: šifra doktora, ime i prezime, datum rođenja, korisničko ime, lozinka, broj telefona i e-mail. Entitet Liječnik obiteljske medicine u odnosu je \textit{One-to-Many} s entitetom Roditelj putem vlastite šifre.
+				
+				\begin{longtblr}[
+					label=none,
+					entry=none
+					]{
+						width = \textwidth,
+						colspec={|X[10,l]|X[6, l]|X[20, l]|}, 
+						rowhead = 1,
+					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
+					\hline \SetCell[c=3]{c}{\textbf{Pedijatar}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}doctorId & CHAR(5)	&  	Jedinstveni identifikator liječnika	\\ \hline
+					nameDoctor	& VARCHAR &   Ime liječnika	\\ \hline 
+					lastNameDoctor	& VARCHAR &   Prezime liječnika	\\ \hline 
+					dateOfBirthDoctor	& DATE &   Datum rođenja liječnika	\\ \hline 
+					userNameDoctor	& VARCHAR &   Korisničko ime računa	\\ \hline 
+					passwordDoctor & VARCHAR &  Zaporka računa \\ \hline 
+					phoneNumDoctor	& VARCHAR &   Broj telefona liječnika	\\ \hline 
+					emailDoctor	& VARCHAR &   E-mail liječnika	\\ \hline
+					
+				\end{longtblr}
+				
+				\textbf{Medicinski karton} - Entitet sadržava podatke za opis medicinskog kartona pojedinog pacijenta (roditelj/dijete). Oni su: šifra kartona, OIB, trenutna dijagnoza i popis alergija. Entitet Medicinski karton u odnosu je \textit{One-to-One} s entitetom Roditelj i s entitetom Dijete, putem OIB-a pacijenta (R/D), te u odnosima \textit{One-to-Many} s entitetima Nalaz i Pregled.  
+				
+				\begin{longtblr}[
+					label=none,
+					entry=none
+					]{
+						width = \textwidth,
+						colspec={|X[8,l]|X[6, l]|X[20, l]|}, 
+						rowhead = 1,
+					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
+					\hline \SetCell[c=3]{c}{\textbf{Medicinski karton}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}redordId & CHAR(5)	&  	Jedinstveni identifikator kartona	\\ \hline
+					\SetCell{LightBlue}OIB	& CHAR(11) &  Jedinstveni identifikator pacijenta 	\\ \hline 
+					currentDiagnosis & VARCHAR &   \\ \hline 
+					allergyList & VARCHAR	&  		\\ \hline
+				\end{longtblr}
+				
+				\textbf{Pregled} - Entitet sadržava podatke pregleda kojeg održava pedijatar ili LOM. Oni su: šifra pregleda, šifra kartona kojem pripada, dijagnoza i datum pregleda. Entitet Pregled u odnosu je \textit{Many-to-One} s entitetom Medicinski karton.
+				
+				\begin{longtblr}[
+					label=none,
+					entry=none
+					]{
+						width = \textwidth,
+						colspec={|X[9,l]|X[6, l]|X[20, l]|}, 
+						rowhead = 1,
+					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
+					\hline \SetCell[c=3]{c}{\textbf{Pregled}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}examinationId & CHAR(5)	&  	Jedinstveni identifikator pregleda	\\ \hline
+					\SetCell{LightBlue}recordId	& CHAR(5) &  Jedinstveni identifikator kartona 	\\ \hline 
+					diagnosis & VARCHAR &  Opis dijagnoze  \\ \hline 
+					dateOfExamination & DATE	&  	Datum pregleda	\\ \hline
+				\end{longtblr}
+				
+				\textbf{Nalaz} - Entitet sadržava podatke koji opisuju nalaz dobiven prilikom privatnog pregleda, kojeg \textit{uploada} roditelj. Oni su: šifra nalaza, šifra kartona, datum nalaza, podaci nalaza. Entitet Nalaz u odnosu je \textit{Many-to-One} s entitetom Medicinski karton.
+				
+				\begin{longtblr}[
+					label=none,
+					entry=none
+					]{
+						width = \textwidth,
+						colspec={|X[9,l]|X[6, l]|X[20, l]|}, 
+						rowhead = 1,
+					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
+					\hline \SetCell[c=3]{c}{\textbf{Nalaz}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}reportId & CHAR(5)	&  	Jedinstveni identifikator nalaza	\\ \hline
+					\SetCell{LightBlue}recordId	& CHAR(5) &  Jedinstveni identifikator kartona 	\\ \hline 
+					reportInformation & VARCHAR &  Podaci iz nalaza  \\ \hline 
+					dateOfReport & DATE	&  	Datum pregleda	\\ \hline
+				\end{longtblr}
+				
 			\subsection{Dijagram baze podataka}
 				\textit{ U ovom potpoglavlju potrebno je umetnuti dijagram baze podataka. Primarni i strani ključevi moraju biti označeni, a tablice povezane. Bazu podataka je potrebno normalizirati. Podsjetite se kolegija "Baze podataka".}
 			
