@@ -58,7 +58,7 @@
 					postalCode & INT &  Poštanski broj mjesta stanovanja \\ \hline 
 					placeOfResidence & VARCHAR	&  	Mjesto stanovanja roditelja	\\ \hline 
 					employerEmail	& VARCHAR &   E-mail poslodavca roditelja	\\ \hline 
-					\SetCell{LightBlue}doctorId	& CHAR(5) &   Identifikator L.O.M.-a roditelja	\\ \hline
+					\SetCell{LightBlue}doctorId	& INT &   Identifikator L.O.M.-a roditelja	\\ \hline
 				\end{longtblr}
 				
 				\textbf{Dijete} - Entitet sadržava sve podatke koje unosi pedijatar prilikom prvog pregleda djeteta. Oni su: OIB, OIB roditelja, šifra pedijatra, ime i prezime, datum rođenja, naziv škole/vrtića te e-mail škole/vrtića. Entitet dijete u odnosu je \textit{Many-to-One} sa entitetom Roditelj, putem roditeljevog OIB-a, u odnosu \textit{Many-to-One} s entitetom Pedijatar putem pedijatrovog ID-a, te u odnosu \textit{One-to-One} s entitetom Medicinski karton, putem vlastitog OIB-a.
@@ -79,7 +79,7 @@
 					educationalInstitution	& VARCHAR &   Ime škole/vrtića djeteta	\\ \hline 
 					emailEduInstitution & VARCHAR &  E-mail škole/vrtića \\ \hline 
 					\SetCell{LightBlue}parentOib & CHAR(11)	&  Jedinstveni identifikator roditelja	\\ \hline 
-					\SetCell{LightBlue} pediatricanId	& CHAR(5) &   Jedinstveni identifikator pedijatra	\\ \hline 
+					\SetCell{LightBlue} pediatricanId	& INT &   Jedinstveni identifikator pedijatra	\\ \hline 
 				\end{longtblr}
 				
 				\textbf{Pedijatar} - Entitet sadržava sve podatke koje unosi administrator prilikom registracije pedijatra u sustav. Oni su: šifra pedijatra, ime i prezime, datum rođenja, korisničko ime, lozinka, broj telefona, e-mail. Entitet pedijatar u odnosu je \textit{One-to-Many} s entitetom Dijete putem vlastite šifre.
@@ -93,7 +93,7 @@
 						rowhead = 1,
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
 					\hline \SetCell[c=3]{c}{\textbf{Pedijatar}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}pediatricianId & CHAR(5)	&  	Jedinstveni identifikator pedijatra	\\ \hline
+					\SetCell{LightGreen}pediatricianId & INT	&  	Jedinstveni identifikator pedijatra	\\ \hline
 					namePediatirican	& VARCHAR &   Ime pedijatra	\\ \hline 
 					lastNamePediatirican	& VARCHAR &   Prezime pedijatra	\\ \hline 
 					dateOfBirthPediatirican	& DATE &   Datum rođenja pedijatra	\\ \hline 
@@ -114,8 +114,8 @@
 						colspec={|X[10,l]|X[6, l]|X[20, l]|}, 
 						rowhead = 1,
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
-					\hline \SetCell[c=3]{c}{\textbf{Pedijatar}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}doctorId & CHAR(5)	&  	Jedinstveni identifikator liječnika	\\ \hline
+					\hline \SetCell[c=3]{c}{\textbf{Liječnik obiteljske medicine}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}doctorId & INT	&  	Jedinstveni identifikator liječnika	\\ \hline
 					nameDoctor	& VARCHAR &   Ime liječnika	\\ \hline 
 					lastNameDoctor	& VARCHAR &   Prezime liječnika	\\ \hline 
 					dateOfBirthDoctor	& DATE &   Datum rođenja liječnika	\\ \hline 
@@ -137,10 +137,10 @@
 						rowhead = 1,
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
 					\hline \SetCell[c=3]{c}{\textbf{Medicinski karton}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}redordId & CHAR(5)	&  	Jedinstveni identifikator kartona	\\ \hline
+					\SetCell{LightGreen}redordId & INT	&  	Jedinstveni identifikator kartona	\\ \hline
 					\SetCell{LightBlue}OIB	& CHAR(11) &  Jedinstveni identifikator pacijenta 	\\ \hline 
-					currentDiagnosis & VARCHAR &   \\ \hline 
-					allergyList & VARCHAR	&  		\\ \hline
+					currentDiagnosis & VARCHAR &  Aktivna ili zadnja dijagnoza djeteta \\ \hline 
+					allergyList & VARCHAR	&  	Popis alergija djeteta	\\ \hline
 				\end{longtblr}
 				
 				\textbf{Pregled} - Entitet sadržava podatke pregleda kojeg održava pedijatar ili LOM. Oni su: šifra pregleda, šifra kartona kojem pripada, dijagnoza i datum pregleda. Entitet Pregled u odnosu je \textit{Many-to-One} s entitetom Medicinski karton.
@@ -154,8 +154,8 @@
 						rowhead = 1,
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
 					\hline \SetCell[c=3]{c}{\textbf{Pregled}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}examinationId & CHAR(5)	&  	Jedinstveni identifikator pregleda	\\ \hline
-					\SetCell{LightBlue}recordId	& CHAR(5) &  Jedinstveni identifikator kartona 	\\ \hline 
+					\SetCell{LightGreen}examinationId & INT	&  	Jedinstveni identifikator pregleda	\\ \hline
+					\SetCell{LightBlue}recordId	& INT &  Jedinstveni identifikator kartona 	\\ \hline 
 					diagnosis & VARCHAR &  Opis dijagnoze  \\ \hline 
 					dateOfExamination & DATE	&  	Datum pregleda	\\ \hline
 				\end{longtblr}
@@ -171,8 +171,8 @@
 						rowhead = 1,
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
 					\hline \SetCell[c=3]{c}{\textbf{Nalaz}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}reportId & CHAR(5)	&  	Jedinstveni identifikator nalaza	\\ \hline
-					\SetCell{LightBlue}recordId	& CHAR(5) &  Jedinstveni identifikator kartona 	\\ \hline 
+					\SetCell{LightGreen}reportId & INT	&  	Jedinstveni identifikator nalaza	\\ \hline
+					\SetCell{LightBlue}recordId	& INT &  Jedinstveni identifikator kartona 	\\ \hline 
 					reportInformation & VARCHAR &  Podaci iz nalaza  \\ \hline 
 					dateOfReport & DATE	&  	Datum pregleda	\\ \hline
 				\end{longtblr}
