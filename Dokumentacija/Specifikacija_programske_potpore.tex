@@ -136,7 +136,7 @@
 							\item Na početnoj stranici aplikacije korisnik odabire opciju "Registriraj se"
 							\item Sustav otvara ekran registracije
 							\item Korisnik unosi osobne i korisničke podatke, te potvrđuje da se želi registrirati
-							\item Baza podataka se ažurira prilikom stvaranja novog korisničkog računa
+							\item Sustav ažurira bazu podataka i vraća korisnika na početnu stranicu
 							\item Korisnik prima vizualnu obavijest o registraciji
 						\end{packed_enum}
 						
@@ -169,7 +169,7 @@
 							\item Korisnik odabire opciju "Prijava" na početnoj stranici aplikacije
 							\item Sustav otvara ekran prijave
 							\item Korisnik unosi svoje korisničko ime i lozinku, te odabire opciju "Prijavi se"
-							\item Nakon provjere unesenih podataka u bazi podataka, korisniku se otvara početna stranica profila
+							\item Nakon provjere unesenih podataka u bazi podataka, sustav korisniku otvara početna stranica profila
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
@@ -411,7 +411,7 @@
 							\item Na izborniku s lijeve strane sučelja roditelj odabire opciju "Učitavanje nalaza"
 							\item Otvara se novo sučelje s desne strane izbornika, na kojem se nalazi polje za poruku liječniku/pedijatru, gumb za odabir dokumenta, te gumb "Učitaj"
 							\item Roditelj piše poruku, odabire dokument i stišće gumb "Učitaj", čime se vrši \textit{upload} dokumenta i poruke
-							\item Roditelj dobiva vizualnu potvrdu da je učitavanje uspjelo
+							\item Sustav dokument sprema u bazu podataka, vraća korisnika na početni prikaz (korak 2), i obavještava ga o uspjehu \textit{uploada}
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
@@ -528,7 +528,7 @@
 							\item Liječnik/pedijatar na profilu odabranog pacijenta pritišće opciju za unos novog pregleda
 							\item Otvara se prikaz za unos podataka o pregledu, s poljima vezanim uz podatke pacijenta već ispunjenima
 							\item Liječnik/pedijatar unosi podatke o pregledu, te pritišće opciju za unos
-							\item Sustav navedene podatke o pregledu koristi da bi stvorio objekt pregleda, te njega sprema u bazu podataka
+							\item Sustav navedene podatke o pregledu koristi da bi stvorio objekt pregleda, te njega sprema u bazu podataka i vraća liječnika/pedijatra na profil pacijenta (korak 1)
 						\end{packed_enum}
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}
@@ -563,10 +563,10 @@
 							\item Sustav pristupa bazi podataka, te iz nje prenosi podatke o odabranom pacijentu
 							\item Otvara se sučelje s unesenim podacima pacijenta, te poljima za unos imena bolesti i vremena trajanja ispričnice
 							\item Pedijatar unosi podatke i pritišće opciju za slanje
-							\item Sustav stvara novi objekt ispričnice, te ga sprema u bazu podataka
+							\item Sustav stvara novi objekt ispričnice, te ga sprema u bazu podataka i vraća pedijatra na profil pacijenta (korak 1)
 						\end{packed_enum}
 						\item \textbf{Opis mogućih odstupanja:}
-						item[] \begin{packed_item}
+						\item[] \begin{packed_item}
 						\item[2/5.a] Greška pri pristupu bazi podataka
 						\item[] \begin{packed_enum}
 							
@@ -574,6 +574,10 @@
 							\item L.O.M./Pedijatra se moli da pokuša kasnije, ili da kontaktira administratora
 							
 						\end{packed_enum}
+							\item[4.a] Liječnik/pedijatar odabire opciju "Odustani"
+							\item[] \begin{packed_enum}
+								\item Sustav liječnika/pedijatra vraća na prikaz profila pacijenta(korak 1)
+							\end{packed_enum}
 						\end{packed_item}
 					\end{packed_item}
 					
@@ -592,10 +596,10 @@
 							\item Sustav pristupa bazi podataka, u kojoj pronalazi OIB roditelja, kojim dohvaća podatke roditelja pacijenta
 							\item Otvara se sučelje s unesenim podacima roditelja pacijenta, te poljima za unos razloga za bolovanjem i vremena trajanja bolovanja
 							\item Pedijatar unosi podatke i pritišće opciju za slanje
-							\item Sustav stvara novi objekt preporuke o bolovanju kojeg sprema u bazu podataka
+							\item Sustav stvara novi objekt preporuke o bolovanju kojeg sprema u bazu podataka i vraća pedijatra na profil pacijenta (korak 1)
 						\end{packed_enum}
 						\item \textbf{Opis mogućih odstupanja:}
-						item[] \begin{packed_item}
+						\item[] \begin{packed_item}
 							\item[2/5.a] Greška pri pristupu bazi podataka
 							\item[] \begin{packed_enum}
 								
@@ -603,6 +607,10 @@
 								\item L.O.M./Pedijatra se moli da pokuša kasnije, ili da kontaktira administratora
 								
 							\end{packed_enum}
+								\item[4.a] Liječnik/pedijatar odabire opciju "Odustani"
+								\item[] \begin{packed_enum}
+									\item Sustav liječnika/pedijatra vraća na prikaz profila pacijenta(korak 1)
+								\end{packed_enum}
 						\end{packed_item}
 					\end{packed_item}
 					
@@ -620,10 +628,14 @@
 							\item Pedijatar na profilu pacijenta bira opciju za slanje obavijesti roditelju pacijenta
 							\item Otvara se sučelje s poljima za unos naslova obavijesti, te poljem za unos dužeg teksta/poruke obavijesti
 							\item Pedijatar unosi podatke i pritišće opciju za slanje
-							\item Sustav pristupa bazi podataka u kojoj pronalazi OIB roditelja, s kojim tvori novi objekt obavijesti koji se šalje
+							\item Sustav pristupa bazi podataka u kojoj pronalazi OIB roditelja, s kojim tvori novi objekt obavijesti koji se šalje i vraća pedijatra na profil pacijenta (korak 1)
 						\end{packed_enum}
 						\item \textbf{Opis mogućih odstupanja:}
-						item[] \begin{packed_item}
+						\item[]	\begin{packed_item}
+								\item[3.a] Liječnik/pedijatar odabire opciju "Odustani"
+								\item[] \begin{packed_enum}
+									\item Sustav liječnika/pedijatra vraća na prikaz profila pacijenta(korak 1)
+								\end{packed_enum}
 							\item[4.a] Greška pri pristupu bazi podataka
 							\item[] \begin{packed_enum}
 								
@@ -646,10 +658,26 @@
 						\item[] \begin{packed_enum}
 							
 							\item Liječnik/pedijatar na profilu pacijenta bira opciju "Specijalistički pregled"
-							\item Sustav 
+							\item Sustav pristupa bazi podataka iz koje prenosi podatke pacijenta
 							\item Otvara se sučelje s unesenim podacima pacijenta, te poljima za unos vrste specijalističkog pregleda i za unos mogućih lokacija na kojima se može izvesti pregled
 							\item Liječnik/pedijatar unosi tražene podatke te pritišće opciju za slanje
+							\item Sustav stvara novi objekt specijalističkog pregleda i sprema ga u bazu, te vraća liječnika/pedijatra na profil pacijenta (korak 1)
 						\end{packed_enum}
+						\item \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							\item[2/5.a] Greška pri pristupu bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item L.O.M./Pedijatra se obavještava o grešci, putem ispisane poruke
+								\item L.O.M./Pedijatra se moli da pokuša kasnije, ili da kontaktira administratora
+								
+							\end{packed_enum}
+								\item[4.a] Liječnik/pedijatar odabire opciju "Odustani"
+								\item[] \begin{packed_enum}
+									\item Sustav liječnika/pedijatra vraća na prikaz profila pacijenta(korak 1)
+								\end{packed_enum}
+						\end{packed_item}
+						
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC20 - Pregledaj nalaze iz privatnih ustanova}}
@@ -664,9 +692,20 @@
 						\item[] \begin{packed_enum}
 							
 							\item Liječnik/pedijatar na profilu pacijenta bira opciju "Nalazi iz privatnih ustanova"
+							\item Sustav pristupa bazi podataka iz koje prenosi popis nalaza
 							\item Otvara se prikaz s popisom nalaza, na kojima piše datum te ime i prezime pacijenta
 							\item Pritiskom na jedan nalaz otvara se detaljan prikaz
 						\end{packed_enum}
+						\item \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							\item[2.a] Greška pri pristupu bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item L.O.M./Pedijatra se obavještava o grešci, putem ispisane poruke
+								\item L.O.M./Pedijatra se moli da pokuša kasnije, ili da kontaktira administratora
+								
+							\end{packed_enum}
+						\end{packed_item}
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC21 - Pošalji povratnu informaciju}}
@@ -683,7 +722,22 @@
 							\item Liječnik/pedijatar pritišće na opciju "Povratna informacija" koja se nalazi na dnu nalaza
 							\item Otvara se sučelje s poljima za unos naslova obavijesti, te poljem za unos dužeg teksta poruke
 							\item Liječnik/pedijatar unosi podatke i pritišće opciju za slanje
+							\item Sustav pristupa bazi podataka u kojoj pronalazi OIB roditelja, s kojim tvori novi objekt obavijesti koji se šalje, te vraća liječnika/pedijatra na profil pacijenta
 						\end{packed_enum}
+						\item \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							\item[3.a] Liječnik/pedijatar odabire opciju "Odustani"
+							\item[] \begin{packed_enum}
+								\item Sustav liječnika/pedijatra vraća na prikaz nalaza (korak 1)
+							\end{packed_enum}
+							\item[4.a] Greška pri pristupu bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item L.O.M./Pedijatra se obavještava o grešci, putem ispisane poruke
+								\item L.O.M./Pedijatra se moli da pokuša kasnije, ili da kontaktira administratora
+								
+							\end{packed_enum}
+						\end{packed_item}
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC22 - Unesi novog pacijenta}}
@@ -701,6 +755,8 @@
 							\item Otvara se sučelje s poljima za osobne podatke pacijenta (u slučaju roditelja samo OIB, jer roditelj sam registrira ostale podatke), s poljem za OIB roditelja (u slučaju kada je novi pacijent dijete), te s poljem za kontakt(email) škole/vrtića
 							\item Liječnik/pedijatar unosi podatke u polja
 							\item Liječnik/pedijatar pritišće gumb "Unesi"
+							\item Sustav stvara novi objekt pacijenta i sprema ga u bazu podataka, te vraća liječnika/pedijatra na popis pacijenata
+							
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
@@ -711,6 +767,13 @@
 								\item U slučaju pogrešno unesenog OIB-a (OIB ne postoji), liječnik/pedijatar dobiva obavijest o pogrešci
 								\item Liječnik/pedijatar ispravlja grešku
 							\end{packed_enum}	
+							\item[5.a] Greška pri pristupu bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item L.O.M./Pedijatra se obavještava o grešci, putem ispisane poruke
+								\item L.O.M./Pedijatra se moli da pokuša kasnije, ili da kontaktira administratora
+								
+							\end{packed_enum}
 						\end{packed_item}
 					\end{packed_item}
 					
@@ -726,11 +789,29 @@
 						\item[] \begin{packed_enum}
 							
 							\item Liječnik/pedijatar na izborniku s lijeve strane sučelja bira opciju "Preporuke za bolovanje"
+							\item Sustav pristupa bazi podataka iz koje povlači popis preporuka za bolovanje
 							\item Otvara se sučelje s popisom preporuka za bolovanje, gdje se pritiskom na jednu otvara detaljan prikaz podataka pacijenta, trajanja bolovanja i opis razloga za preporukom
 							\item Liječnik pritišće gumb za prihvaćanje ili gumb za odbijanje
+							
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							\item[2.a] Greška pri pristupu bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item Liječnika se obavještava o grešci, putem ispisane poruke
+								\item Liječnika se moli da pokuša kasnije, ili da kontaktira administratora
+								
+							\end{packed_enum}
+							\item[4.a] Greška pri generiranju/slanju doznake o bolovanju poslodavcu
+							\item[] \begin{packed_enum}
+								
+								\item Liječnika se obavještava o grešci, putem ispisane poruke
+								\item Liječnika se moli da pokuša kasnije, ili da kontaktira administratora
+								
+							\end{packed_enum}
+						\end{packed_item}
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC24 - Stvori profil liječnika/pedijatra}}
@@ -743,11 +824,24 @@
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
-							
 							\item Administrator bira opciju za stvaranje novog liječnika ili pedijatra
 							\item Otvara se sučelje s poljima za unos osobnih i korisničkih podataka
 							\item Administrator ispunjava polja i pritišće opciju "Stvori profil"
+							\item Sustav stvara profil te ga sprema u bazu podataka
 						\end{packed_enum}
+						\item \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							\item[3.a] Administrator odabire opciju "Odustani"
+							\item[] \begin{packed_enum}
+								\item Sustav administratora preusmjerava na popis pacijenata
+							\end{packed_enum}
+							\item[4.a] Greška pri pristupu bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item Administratora se obavještava o grešci i ispisuje se \textit{Stack trace} greške
+								
+							\end{packed_enum}
+						\end{packed_item}
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC25 - Pregledaj korisnike}}
@@ -762,8 +856,19 @@
 						\item[] \begin{packed_enum}
 							
 							\item Administrator bira opciju za prikaz korisnika
+							\item Sustav pristupa bazi podataka te vraća popis svih korisnika
 							\item Otvara se lista ispravno registriranih korisnika, po kategorijama
 						\end{packed_enum}
+						\item \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							
+							\item[2.a] Greška pri pristupu bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item Administratora se obavještava o grešci i ispisuje se \textit{Stack trace} greške
+								
+							\end{packed_enum}
+						\end{packed_item}
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC26 - Odaberi korisnika}}
@@ -777,8 +882,19 @@
 						
 						\item[] \begin{packed_enum}
 							\item Administrator bira profil korisnika kojem želi pristupiti
+							\item Sustav pristupa bazi podataka i vraća podatke o korisniku
 							\item Otvara se prikaz osobnih, korisničkih i medicinskih (npr. zaduženi pedijatar) podataka nekog korisnika
 						\end{packed_enum}
+						\item \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							
+							\item[2.a] Greška pri pristupu bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item Administratora se obavještava o grešci i ispisuje se \textit{Stack trace} greške
+								
+							\end{packed_enum}
+						\end{packed_item}
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC27 - Obriši korisnika}}
@@ -792,7 +908,19 @@
 						
 						\item[] \begin{packed_enum}
 							\item Administrator na profilu pritišće opciju "Izbriši profil"
+							\item Sustav pristupa bazi podataka u kojoj briše profil
+							\item Administratora se vraća na prikaz svih korisnika
 						\end{packed_enum}
+						\item \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							
+							\item[2.a] Greška pri pristupu bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item Administratora se obavještava o grešci i ispisuje se \textit{Stack trace} greške
+								
+							\end{packed_enum}
+						\end{packed_item}
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC28 - Promjeni podatke korisnika}}
@@ -806,9 +934,21 @@
 						
 						\item[] \begin{packed_enum}
 							\item Administrator na profilu pritišće opciju "Uredi profil"
+							\item Sustav pristupa bazi podataka gdje dobavlja podatke o korisniku
 							\item Otvara se sučelje s ispunjenim poljima za tekst, gdje se nalaze pripadni podaci o korisniku
 							\item Administrator uređuje podatke, i na kraju pritišće opciju "Spremi promjene"
+							\item Sustav unosi promjene u bazu podataka
 						\end{packed_enum}
+						\item \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							
+							\item[2/5.a] Greška pri pristupu bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item Administratora se obavještava o grešci i ispisuje se \textit{Stack trace} greške
+								
+							\end{packed_enum}
+						\end{packed_item}
 					\end{packed_item}
 				
 					

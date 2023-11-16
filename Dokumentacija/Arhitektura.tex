@@ -46,6 +46,9 @@
 				\item Medicinski karton
 				\item Pregled
 				\item Nalaz
+				\item Obavijest
+				\item Specijalistički pregled
+				\item Preporuka o bolovanju
 			\end{packed_item}
 		
 			\subsection{Opis tablica}
@@ -192,6 +195,57 @@
 					\SetCell{LightBlue}recordId	& INT &  Jedinstveni identifikator kartona 	\\ \hline 
 					reportInformation & VARCHAR &  Podaci iz nalaza  \\ \hline 
 					dateOfReport & DATE	&  	Datum pregleda	\\ \hline
+				\end{longtblr}
+				
+				\textbf{Obavijest} - Entitet sadržava podatke koji opisuju obavijest poslanu roditelju, koju piše liječnik/pedijatar. Oni su: šifra obavijesti, OIB roditelja, OIB djeteta, naslov i tekst obavijesti. Entitet Obavijest u odnosu je \textit{Many-to-One} s entitetima Roditelj i Dijete.
+				
+				\begin{longtblr}[
+					label=none,
+					entry=none
+					]{
+						width = \textwidth,
+						colspec={|X[11,l]|X[6, l]|X[20, l]|}, 
+						rowhead = 1,
+					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
+					\hline \SetCell[c=3]{c}{\textbf{Notification/Obavijest}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}notificationId & INT	&  	Jedinstveni identifikator obavijesti	\\ \hline
+					\SetCell{LightBlue}parentOib	& CHAR(11) &  Jedinstveni identifikator roditelja 	\\ \hline 
+					\SetCell{LightBlue}childOib	& CHAR(11) &  Jedinstveni identifikator djeteta	\\ \hline 
+					notificationInformation & VARCHAR &  Podaci obavijesti  \\ \hline 
+					notificationTitle & VARCHAR &  Naslov obavijesti  \\ \hline 
+				\end{longtblr}
+				
+				\textbf{Specijalistički pregled} - Entitet sadržava podatke koji opisuju specijalistički pregled na kojeg liječnik/pedijatar prijavljuje pacijenta. Oni su: šifra pregleda, šifra pacijenta, naziv pregleda, moguće lokacije pregleda. Entitet Spec. pregled u odnosu je \textit{Many-to-One} s entitetima Roditelj i Dijete.
+				
+				\begin{longtblr}[
+					label=none,
+					entry=none
+					]{
+						width = \textwidth,
+						colspec={|X[9,l]|X[6, l]|X[20, l]|}, 
+						rowhead = 1,
+					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
+					\hline \SetCell[c=3]{c}{\textbf{Specialist examination/Specijalistički pregled}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}examId & INT	&  	Jedinstveni identifikator pregleda	\\ \hline
+					\SetCell{LightBlue}patientOib	& CHAR(11) &  Jedinstveni identifikator pacijenta 	\\ \hline 
+					examTitle & VARCHAR &  Naziv pregleda  \\ \hline 
+					examLocations & VARCHAR	&  	Moguće lokacije pregleda	\\ \hline
+				\end{longtblr}
+				
+				\textbf{Preporuka o bolovanju} - Entitet sadržava podatke o bolovanju kojeg pedijatar preporučuje za roditelja djeteta. Oni su: šifra preporuke, šifra liječnika obiteljske medicine, opis razloga za bolovanje i trajanja. Entitet Prep. o bolovanju u odnosu je \textit{Many-to-One} s entitetom Liječnik obiteljske medicine.
+				
+				\begin{longtblr}[
+					label=none,
+					entry=none
+					]{
+						width = \textwidth,
+						colspec={|X[9,l]|X[6, l]|X[20, l]|}, 
+						rowhead = 1,
+					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
+					\hline \SetCell[c=3]{c}{\textbf{Sick leave recommendation/Preporuka o bolovanju}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}recommendationId & INT	&  	Jedinstveni identifikator preporuke	\\ \hline
+					\SetCell{LightBlue}doctorId	& INT &  Jedinstveni identifikator liječnika	\\ \hline 
+					recData & VARCHAR &  Sadržaj preporuke  \\ \hline
 				\end{longtblr}
 				
 			\subsection{Dijagrami baze podataka}
