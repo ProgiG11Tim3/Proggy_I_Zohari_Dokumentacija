@@ -110,12 +110,22 @@
 							\item Korisnik otvara web stranicu aplikacije
 							\item Korisnik pregledava sadržaj stranice
 						\end{packed_enum}
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+						
+							\item[1.a] Neuspjeh učitavanja stranice, zbog greške u pristupu serverima
+							\item[] \begin{packed_enum}
+							
+								\item Korisnika se obavještava o neuspjehu učitavanja stranice putem ispisane poruke
+								\item Korisnik provjerava svoj pristup internetu, te pokušava ponovno
+							
+							\end{packed_enum}
+						\end{packed_item}
 					\end{packed_item}
-					
 					\noindent \underbar{\textbf{UC2-Registriraj se}}
 					\begin{packed_item}
 						
-						\item \textbf{Glavni sudionik: }Korisnik
+						\item \textbf{Glavni sudionik: }Neregistrirani korisnik
 						\item  \textbf{Cilj:} Stvoriti korisnički račun roditelja za prijavu u sustav
 						\item  \textbf{Sudionici:} Baza podataka
 						\item  \textbf{Preduvjet:} Otvorena početna stranica aplikacije
@@ -126,20 +136,22 @@
 							\item Na početnoj stranici aplikacije korisnik odabire opciju "Registriraj se"
 							\item Sustav otvara ekran registracije
 							\item Korisnik unosi osobne i korisničke podatke, te potvrđuje da se želi registrirati
+							\item Baza podataka se ažurira prilikom stvaranja novog korisničkog računa
 							\item Korisnik prima vizualnu obavijest o registraciji
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
-						
 						\item[] \begin{packed_item}
-							
 							\item[2.a] Odabir već korištenog korisničkog imena, email-a ili OIB-a/nepravilan format unosa
 							\item[] \begin{packed_enum}
-								
 								\item Korisnika se obavještava o neuspjehu registracije, i vraća ga se na stranicu za registraciju
 								\item Korisnik ispravlja nepravilno unesene podatke, te ponovno potvrđuje unos
-								
 							\end{packed_enum}
+							\item[3.a] Korisnik odabire opciju "Odustani"
+							\item[] \begin{packed_enum}
+								\item Sustav korisnika vraća na početnu stranicu (korak 1)
+							\end{packed_enum}
+							
 						\end{packed_item}
 					\end{packed_item}
 					
@@ -154,23 +166,26 @@
 						
 						\item[] \begin{packed_enum}
 							
-							\item Korisnik odabire opciju "Prijavi se" na početnoj stranici aplikacije
+							\item Korisnik odabire opciju "Prijava" na početnoj stranici aplikacije
 							\item Sustav otvara ekran prijave
-							\item Korisnik unosi svoje korisničko ime i lozinku
+							\item Korisnik unosi svoje korisničko ime i lozinku, te odabire opciju "Prijavi se"
 							\item Nakon provjere unesenih podataka u bazi podataka, korisniku se otvara početna stranica profila
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						
 						\item[] \begin{packed_item}
-							
-							\item[2.a] Nepravilan unos imena ili lozinke
+							\item[3.a] Korisnik odabire opciju "Odustani"
+							\item[] \begin{packed_enum}
+								\item Sustav korisnika vraća na početnu stranicu (korak 1)
+							\end{packed_enum}
+							\item[4.a] Nepravilan unos imena ili lozinke
 							\item[] \begin{packed_enum}
 								
 								\item Korisnik dobiva informaciju o neuspjeloj prijavi, i vraća ga se na stranicu za prijavu
 								\item Korisnik ispravlja nepravilno unesene podatke
 								
-							\end{packed_enum}	
+							\end{packed_enum}
 						\end{packed_item}
 					\end{packed_item}
 					
@@ -185,9 +200,22 @@
 						
 						\item[] \begin{packed_enum}
 							
+							\item Sustav uzima popis obavijesti iz baze podataka i prikazuje korisniku
 							\item Roditelj čita popis obavijesti (vezanih uz sve profile računa roditelja, dakle osobni profil i sva djeca) koji mu se prikazuje na lijevoj strani sučelja nakon uspješne prijave
 							
 						\end{packed_enum}
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[1.a] Greška pri pristupu obavijestima u bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item Roditelja se obavještava o neuspjehu dohvaćanja obavijesti, putem ispisane poruke
+								\item Roditelja se moli da pokuša kasnije, ili da kontaktira administratora
+								
+							\end{packed_enum}
+						\end{packed_item}
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC5 - Odaberi profil}}
@@ -201,10 +229,23 @@
 						
 						\item[] \begin{packed_enum}
 							
+							\item Sustav filtrira popis profila vezanih uz roditeljski račun iz baze podataka, te ih prikazuje
 							\item Roditelj odabire jedan od profila koji mu se prikazuju na desnoj strani sučelja nakon uspješne prijave
 							\item Sustav pronalazi podatke o kliknutom profilu, te otvara stranicu odabranog profila
 							
 						\end{packed_enum}
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							
+							\item[1.a] Greška u sustavu pri pristupu odabranom profilu
+							\item[] \begin{packed_enum}
+								
+								\item Roditelja se obavještava o neuspjehu dohvaćanja podataka o profilu, putem ispisane poruke
+								\item Roditelja se moli da pokuša kasnije, ili da kontaktira administratora
+								
+							\end{packed_enum}
+						\end{packed_item}
+						
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC6 - Pregledaj obavijesti (2)}}
@@ -217,10 +258,21 @@
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
-							
+							\item Sustav uzima popis obavijesti iz baze podataka te ih prikazuje
 							\item Roditelj čita popis obavijesti (isključivo vezanih za odabrani profil) koji mu se prikazuje na desnoj strani sučelja nakon uspješne odabira profila \\
 
 						\end{packed_enum}
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							
+							\item[1.a] Greška pri pristupu obavijestima u bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item Roditelja se obavještava o neuspjehu dohvaćanja obavijesti, putem ispisane poruke
+								\item Roditelja se moli da pokuša kasnije, ili da kontaktira administratora
+								
+							\end{packed_enum}
+						\end{packed_item}
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC7 - Pregledaj povijest liječničkih pregleda}}
@@ -235,8 +287,20 @@
 						\item[] \begin{packed_enum}
 							
 							\item Na izborniku s lijeve strane sučelja roditelj odabire opciju "Povijest liječničkih pregleda"
+							\item Sustav pristupa bazi podataka, iz koje prenosi popis obavljenih liječničkih pregleda
 							\item Otvara se prikaz povijesti liječničkih pregleda na desnoj strani sučelja pored izbornika
 						\end{packed_enum}
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							
+							\item[2.a] Greška pri pristupu pregledima u bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item Roditelja se obavještava o neuspjehu dohvaćanja popisa pregleda, putem ispisane poruke
+								\item Roditelja se moli da pokuša kasnije, ili da kontaktira administratora
+								
+							\end{packed_enum}
+						\end{packed_item}
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC8 - Pregledaj generirane ispričnice}}
@@ -251,8 +315,20 @@
 						\item[] \begin{packed_enum}
 							
 							\item Na izborniku s lijeve strane sučelja roditelj odabire opciju "Generirane ispričnice"
+							\item Sustav pristupa bazi podataka, iz koje prenosi popis generiranih ispričnica
 							\item Otvara se prikaz generiranih ispričnica na desnoj strani sučelja pored izbornika
 						\end{packed_enum}
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							
+							\item[2.a] Greška pri pristupu ispričnicama u bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item Roditelja se obavještava o neuspjehu dohvaćanja popisa ispričnica, putem ispisane poruke
+								\item Roditelja se moli da pokuša kasnije, ili da kontaktira administratora
+								
+							\end{packed_enum}
+						\end{packed_item}
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC9 - Pregledaj laboratorijske nalaze}}
@@ -267,9 +343,28 @@
 						\item[] \begin{packed_enum}
 							
 							\item Na izborniku s lijeve strane sučelja roditelj odabire opciju "Nalazi iz laboratorija"
+							\item Sustav pristupa bazi podataka, iz koje prenosi popis nalaza iz laboratorija
 							\item Otvara se popis laboratorijskih nalaza, na desnoj strani sučelja pored izbornika
 							\item Roditelj odabire jedan, koji se zatim preuzima iz baze podataka na uređaj roditelja
 						\end{packed_enum}
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							
+							\item[2.a] Greška pri pristupu nalazima u bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item Roditelja se obavještava o neuspjehu dohvaćanja popisa nalaza, putem ispisane poruke
+								\item Roditelja se moli da pokuša kasnije, ili da kontaktira administratora
+								
+							\end{packed_enum}
+							\item[4.a] Greška pri preuzimanju nalaza
+							\item[] \begin{packed_enum}
+								
+								\item Roditelja se obavještava o neuspjehu dohvaćanja nalaza, putem ispisane poruke
+								\item Roditelja se moli da pokuša kasnije, ili da kontaktira administratora
+								
+							\end{packed_enum}
+						\end{packed_item}
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC10 - Pregledaj specijalističke preglede}}
@@ -284,11 +379,22 @@
 						\item[] \begin{packed_enum}
 							
 							\item Na izborniku s lijeve strane sučelja roditelj odabire opciju "Specijalistički pregledi"
+							\item Sustav pristupa bazi podataka, iz koje prenosi podatke o specijalističkim pregledima, i lokacije za iste
 							\item Otvara se prikaz popisa specijalističkih pregleda koji se moraju izvršiti, na desnoj strani sučelja pored izbornika
 							\item Roditelj odabire jedan
 							\item Otvara se prikaz s nazivom pregleda, uputama od pedijatra ili liječnika te karta s lokacijama na kojima je moguće izvesti imenovani pregled 
 						\end{packed_enum}
-
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							
+							\item[2.a] Greška pri pristupu spec. pregledima u bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item Roditelja se obavještava o neuspjehu dohvaćanja popisa pregleda, putem ispisane poruke
+								\item Roditelja se moli da pokuša kasnije, ili da kontaktira administratora
+								
+							\end{packed_enum}
+						\end{packed_item}
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC11 - Učitaj nalaz}}
@@ -334,11 +440,22 @@
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
-							
-							\item Nakon prijave u sustav odmah se otvara sučelje s popisom svih pacijenata
+							\item Sustav nakon prijave automatski pristupa popisu pacijenata u bazi podataka
+							\item Nakon prijave odmah se otvara sučelje s popisom svih pacijenata
 							\item Popisu je također moguće pristupiti (ako je otvoren neki drugi prikaz) putem izbornika na lijevoj strani sučelja
 							\item U slučaju da je popis predug, njime je moguće \textit{scrollati}
 						\end{packed_enum}
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							
+							\item[1.a] Greška pri pristupu pacijentima u bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item L.O.M./Pedijatra se obavještava o neuspjehu dohvaćanja popisa pacijenata, putem ispisane poruke
+								\item L.O.M./Pedijatra se moli da pokuša kasnije, ili da kontaktira administratora
+								
+							\end{packed_enum}
+						\end{packed_item}
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC13 - Pregledaj podatke pacijenta}}
@@ -353,8 +470,20 @@
 						\item[] \begin{packed_enum}
 							
 							\item Liječnik/pedijatar može unutar popisa odabrati pacijenta
-							\item Otvara se prikaz profila tog pacijenta s osobnim podacima, opcijom za otvaranje medicinskog kartona tog pacijenta, te opcijom za unos novog pregleda
+							\item Sustav pristupa bazi podataka, te iz nje prenosi podatke o odabranom pacijentu
+							\item Otvara se prikaz profila tog pacijenta s osobnim podacima, te nekoliko opcija navedenih kasnije
 						\end{packed_enum}
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							
+							\item[2.a] Greška pri pristupu podacima pacijenta u bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item L.O.M./Pedijatra se obavještava o neuspjehu dohvaćanja podataka pacijenta, putem ispisane poruke
+								\item L.O.M./Pedijatra se moli da pokuša kasnije, ili da kontaktira administratora
+								
+							\end{packed_enum}
+						\end{packed_item}
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC14 - Otvori karton pacijenta}}
@@ -369,8 +498,20 @@
 						\item[] \begin{packed_enum}
 							
 							\item Liječnik/pedijatar na profilu odabranog pacijenta pritišće opciju za pregled kartona
+							\item Sustav pristupa bazi podataka, te iz nje prenosi medicinski karton odabranog pacijenta
 							\item Otvara se prikaz medicinskog kartona pacijenta
 						\end{packed_enum}
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							
+							\item[2.a] Greška pri pristupu podacima pacijenta u bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item L.O.M./Pedijatra se obavještava o neuspjehu dohvaćanja kartona pacijenta, putem ispisane poruke
+								\item L.O.M./Pedijatra se moli da pokuša kasnije, ili da kontaktira administratora
+								
+							\end{packed_enum}
+						\end{packed_item}
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC15 - Unesi novi pregled}}
@@ -386,8 +527,24 @@
 							
 							\item Liječnik/pedijatar na profilu odabranog pacijenta pritišće opciju za unos novog pregleda
 							\item Otvara se prikaz za unos podataka o pregledu, s poljima vezanim uz podatke pacijenta već ispunjenima
-							\item Liječnik unosi podatke o pregledu, te pritišće opciju za unos
+							\item Liječnik/pedijatar unosi podatke o pregledu, te pritišće opciju za unos
+							\item Sustav navedene podatke o pregledu koristi da bi stvorio objekt pregleda, te njega sprema u bazu podataka
 						\end{packed_enum}
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							\item[3.a] Liječnik/Pedijatar odabire opciju "Odustani"
+							\item[] \begin{packed_enum}
+								\item Sustav korisnika vraća na početnu stranicu (korak 1)
+							\end{packed_enum}
+							\item[4.a] Greška pri pristupu bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item L.O.M./Pedijatra se obavještava o grešci, putem ispisane poruke
+								\item L.O.M./Pedijatra se moli da pokuša kasnije, ili da kontaktira administratora
+								
+							\end{packed_enum}
+						\end{packed_item}
+						
 					\end{packed_item}
 					
 					
@@ -403,9 +560,21 @@
 						\item[] \begin{packed_enum}
 							
 							\item Pedijatar na profilu pacijenta bira opciju za generiranje ispričnice
+							\item Sustav pristupa bazi podataka, te iz nje prenosi podatke o odabranom pacijentu
 							\item Otvara se sučelje s unesenim podacima pacijenta, te poljima za unos imena bolesti i vremena trajanja ispričnice
 							\item Pedijatar unosi podatke i pritišće opciju za slanje
+							\item Sustav stvara novi objekt ispričnice, te ga sprema u bazu podataka
 						\end{packed_enum}
+						\item \textbf{Opis mogućih odstupanja:}
+						item[] \begin{packed_item}
+						\item[2/5.a] Greška pri pristupu bazi podataka
+						\item[] \begin{packed_enum}
+							
+							\item L.O.M./Pedijatra se obavještava o grešci, putem ispisane poruke
+							\item L.O.M./Pedijatra se moli da pokuša kasnije, ili da kontaktira administratora
+							
+						\end{packed_enum}
+						\end{packed_item}
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC17 - Generiraj preporuku o bolovanju}}
@@ -420,9 +589,21 @@
 						\item[] \begin{packed_enum}
 							
 							\item Pedijatar na profilu pacijenta bira opciju za generiranje preporuke o bolovanju
+							\item Sustav pristupa bazi podataka, u kojoj pronalazi OIB roditelja, kojim dohvaća podatke roditelja pacijenta
 							\item Otvara se sučelje s unesenim podacima roditelja pacijenta, te poljima za unos razloga za bolovanjem i vremena trajanja bolovanja
 							\item Pedijatar unosi podatke i pritišće opciju za slanje
+							\item Sustav stvara novi objekt preporuke o bolovanju kojeg sprema u bazu podataka
 						\end{packed_enum}
+						\item \textbf{Opis mogućih odstupanja:}
+						item[] \begin{packed_item}
+							\item[2/5.a] Greška pri pristupu bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item L.O.M./Pedijatra se obavještava o grešci, putem ispisane poruke
+								\item L.O.M./Pedijatra se moli da pokuša kasnije, ili da kontaktira administratora
+								
+							\end{packed_enum}
+						\end{packed_item}
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC18 - Pošalji obavijest roditelju}}
@@ -439,7 +620,18 @@
 							\item Pedijatar na profilu pacijenta bira opciju za slanje obavijesti roditelju pacijenta
 							\item Otvara se sučelje s poljima za unos naslova obavijesti, te poljem za unos dužeg teksta/poruke obavijesti
 							\item Pedijatar unosi podatke i pritišće opciju za slanje
+							\item Sustav pristupa bazi podataka u kojoj pronalazi OIB roditelja, s kojim tvori novi objekt obavijesti koji se šalje
 						\end{packed_enum}
+						\item \textbf{Opis mogućih odstupanja:}
+						item[] \begin{packed_item}
+							\item[4.a] Greška pri pristupu bazi podataka
+							\item[] \begin{packed_enum}
+								
+								\item L.O.M./Pedijatra se obavještava o grešci, putem ispisane poruke
+								\item L.O.M./Pedijatra se moli da pokuša kasnije, ili da kontaktira administratora
+								
+							\end{packed_enum}
+						\end{packed_item}
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC19 - Zakaži specijalistički pregled}}
@@ -453,7 +645,8 @@
 						
 						\item[] \begin{packed_enum}
 							
-							\item Pedijatar na profilu pacijenta bira opciju "Specijalistički pregled"
+							\item Liječnik/pedijatar na profilu pacijenta bira opciju "Specijalistički pregled"
+							\item Sustav 
 							\item Otvara se sučelje s unesenim podacima pacijenta, te poljima za unos vrste specijalističkog pregleda i za unos mogućih lokacija na kojima se može izvesti pregled
 							\item Liječnik/pedijatar unosi tražene podatke te pritišće opciju za slanje
 						\end{packed_enum}
@@ -528,8 +721,6 @@
 						\item  \textbf{Cilj:} Potvrda preporuka za bolovanje roditelja koje je poslao pedijatar
 						\item  \textbf{Sudionici:} Baza podataka
 						\item  \textbf{Preduvjet:} Prijava u sustav kao liječnik/pedijatar
-						\\
-						\\
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
@@ -623,7 +814,29 @@
 					
 				\subsubsection{Dijagrami obrazaca uporabe}
 					
-					\textit{Prikazati odnos aktora i obrazaca uporabe odgovarajućim UML dijagramom. Nije nužno nacrtati sve na jednom dijagramu. Modelirati po razinama apstrakcije i skupovima srodnih funkcionalnosti.}
+					%unos slike
+					\begin{figure}[H]
+						\includegraphics[scale=0.4]{dijagrami/usecase1.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+						\centering
+						\caption{Dijagram obrazaca uporabe, funkcionalnost nereg. korisnika i Roditelja}
+						\label{fig:useacase1}
+					\end{figure}
+					
+					%unos slike
+					\begin{figure}[H]
+						\includegraphics[scale=0.4]{dijagrami/usecase2.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+						\centering
+						\caption{Dijagram obrazaca uporabe, funkcionalnost Pedijatra i L.O.M.}
+						\label{fig:usecase2}
+					\end{figure}
+					
+					%unos slike
+					\begin{figure}[H]
+						\includegraphics[scale=0.5]{dijagrami/usecase3.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+						\centering
+						\caption{Dijagram obrazaca uporabe, funkcionalnost Administratora}
+						\label{fig:usecase3}
+					\end{figure}
 				\eject		
 				
 			\subsection{Sekvencijski dijagrami}
