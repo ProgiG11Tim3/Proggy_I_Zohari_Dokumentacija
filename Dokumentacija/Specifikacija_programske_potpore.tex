@@ -958,9 +958,9 @@
 							\end{packed_enum}
 						\end{packed_item}
 					\end{packed_item}
-				
+					\clearpage 
 					
-				\subsubsection{Dijagrami obrazaca uporabe}
+				\subsection{Dijagrami obrazaca uporabe}
 					
 					%unos slike
 					\begin{figure}[H]
@@ -1004,7 +1004,7 @@
 				
 				%unos slike
 				\begin{figure}[H]
-					\includegraphics[scale=0.4]{dijagrami/pedseq1.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+					\includegraphics[scale=0.35]{dijagrami/pedseq1.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
 					\centering
 					\caption{Sekvencijski dijagram osnovnih funkcionalnosti pedijatra}
 					\label{fig:seq2}
@@ -1023,6 +1023,16 @@
 					\end{figure}
 					\clearpage
 					
+				\textbf{Sekvencijski dijagram - Obrasci uporabe UC11, UC20 i UC21 (\textit{Upload} nalaza, pregled svih nalaza i opcionalno slanje povratne informacije)}\newline
+					\text Roditelj može na meniju otvorenog profila odabrati opciju za učitavanje nalaza od privatnika. Sustav roditelju otvara prikaz za \textit{upload} s poljima za dodatne informacije. Nakon što roditelj odabire opciju "Učitaj", stvara se novi objekt privatnog nalaza, koji se povezuje na medicinski karton pacijenta, čiji je identifikator jedno od polja u objektu Roditelj/Dijete. Pedijatar/liječnik može na otvorenom profilu pacijenta odabrati opciju za prikaz nalaza od privatnika. U tom slučaju sustav iz baze podataka dobavlja popis, i prikazuje ga pedijatru/liječniku, nakon čega pedijatar/liječnik može otvoriti svaki pojedinačno. Nakon otvaranja detaljnog prikaza nalaza, pedijatar može odabrati opciju za slanje povratne informacije. Nakon toga mu sustav otvara prikaz za slanje obavijesti. Nakon ispunjavanja podataka obavijesti i pritiska opcije za slanje, sustav dobavlja OIB koji je potreban za stvaranje objekta obavijesti iz baze, nakon čega sprema obavijest. [Važno: postupak čitanja obavijesti već je opisan u sekvencijskom dijagramu (Slika 3.4)]
+					%unos slike
+					\begin{figure}[H]
+						\includegraphics[scale=0.4]{dijagrami/pedseq3.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+						\centering
+						\caption{Sekvencijski dijagram rada s privatnim nalazima}
+						\label{fig:seq4}
+					\end{figure}
+					\clearpage
 				
 					
 				\eject

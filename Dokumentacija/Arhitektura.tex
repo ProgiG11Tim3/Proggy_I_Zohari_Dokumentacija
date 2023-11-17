@@ -265,11 +265,10 @@
 					\SetCell{LightBlue}childOib	& CHAR(11) &  Jedinstveni identifikator djeteta	\\ \hline 
 					noteData & VARCHAR &  Sadržaj ispričnice  \\ \hline
 				\end{longtblr}
-				\clearpage
 			\subsection{Dijagrami baze podataka}
 				%unos slike
 				\begin{figure}[H]
-					\includegraphics[scale=0.7]{dijagrami/ozdraviER.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+					\includegraphics[scale=0.1]{dijagrami/ozdraviER.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
 					\centering
 					\caption{Dijagram arhitekture baze podataka}
 					\label{fig:arhitektura-baze1}
@@ -277,33 +276,43 @@
 				
 				%unos slike
 				\begin{figure}[H]
-					\includegraphics[scale=0.8]{dijagrami/ozdraviREL.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+					\includegraphics[scale=0.07]{dijagrami/ozdraviREL.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
 					\centering
 					\caption{Dijagram arhitekture baze podataka}
 					\label{fig:arhitektura-baze2}
 				\end{figure}
-			
+				\clearpage
 			\eject
-			\clearpage
 			
 		\section{Dijagram razreda}
 		
-			\textit{Potrebno je priložiti dijagram razreda s pripadajućim opisom. Zbog preglednosti je moguće dijagram razlomiti na više njih, ali moraju biti grupirani prema sličnim razinama apstrakcije i srodnim funkcionalnostima.}\\
+			\text Na sljedećim slikama prikazani su dijagrami razreda ovog projekta. Zbog lakšeg snalaženja, razredi su raspodijeljeni na nekoliko dijagrama.\\
+			Postoje četiri razreda koji označavaju osobu: liječnik obiteljske medicine (Doctor), pedijatar (Pediatrician), roditelj (Parent) i njegovo dijete (Child). Razred Parent predstavlja roditelja koji se registrira u sustav te povezuje svoju djecu radi komunikacije s pedijatrom i liječnikom. Razred Doctor predstavlja liječnika obiteljske medicine kojeg registrira administrator i ima komunikaciju s roditeljem u vezi bolovanja, te ostalim zadaćama liječnika i pacijenta. Razred Pediatrician predstavlja pedijatra koji je zadužen za liječenje djeteta i izdavanje ispričnica i medicinskih dokumentacija. Razred Child predstavlja dijete registriranog roditelja koje se liječi kod pedijatra. Za dijete i roditelja kao pacijente vežu se tri razreda koji označavaju vrstu medicinske dokumentacije: medicinski kartoni (MedicalRecord), pregledi (Examination), specijalistički pregledi (SpecialistExamination) i nalazi (MedicalReport). Pregledi i nalazi su s djetetom povezani preko medicinskog kartona. Liječnik je povezan s roditeljem, a pedijatar je povezan s roditeljem preko djeteta. Razredi RegistrationRequest i LoginRequest služe za registraciju i prijavu korisnika u sustav.
+				 
 			
 			%unos slike
 			\begin{figure}[H]
-				\includegraphics[scale=0.2]{dijagrami/dijraz1.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\includegraphics[scale=0.15]{dijagrami/dijraz1.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
 				\centering
 				\caption{Dijagram razreda 1}
 				\label{fig:dijraz1}
 			\end{figure}
-			
+			\clearpage
+			\text Postoje tri razreda koji služe kao kontroleri za manipulaciju objekta i njihovo obrađivanje u bazi podataka za liječnika, pedijatra i roditelja. To su DoctorController, PediatricianController i ParentController. Postoje dva razreda RegistrationController i LoginController koji služe za rukovanje registracijama i prijavama korisnika. Za prijenos podataka između controllera i baze podataka postoje sučelja DoctorService, PediatricianService i ParentService te razredi DoctorServiceImpl, PediatricianServiceImpl i ParentServiceImpl koji implementiraju metode iz tih sučelja i osiguravaju prijenos podataka s bazom podataka preko tri sučelja koji predstavljaju repozitorije: DoctorRepository, PediatricianRepository i ParentRepository.
 			%unos slike
 			\begin{figure}[H]
-				\includegraphics[scale=0.25]{dijagrami/dijraz2.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\includegraphics[scale=0.225]{dijagrami/dijraz2.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
 				\centering
 				\caption{Dijagram razreda 2}
 				\label{fig:dijraz2}
+			\end{figure} 
+			
+			%unos slike
+			\begin{figure}[H]
+				\includegraphics[scale=0.225]{dijagrami/dijraz3.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Dijagram razreda 3}
+				\label{fig:dijraz3}
 			\end{figure}
 			
 			\textbf{\textit{dio 2. revizije}}\\			
