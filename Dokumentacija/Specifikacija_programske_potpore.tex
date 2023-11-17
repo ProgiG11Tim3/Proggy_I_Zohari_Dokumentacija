@@ -429,6 +429,7 @@
 							
 						\end{packed_item}
 					\end{packed_item}
+					\clearpage
 					
 					\noindent \underbar{\textbf{UC12 - Pregledaj pacijente u sustavu}}
 					\begin{packed_item}
@@ -791,7 +792,7 @@
 							\item Liječnik/pedijatar na izborniku s lijeve strane sučelja bira opciju "Preporuke za bolovanje"
 							\item Sustav pristupa bazi podataka iz koje povlači popis preporuka za bolovanje
 							\item Otvara se sučelje s popisom preporuka za bolovanje, gdje se pritiskom na jednu otvara detaljan prikaz podataka pacijenta, trajanja bolovanja i opis razloga za preporukom
-							\item Liječnik pritišće gumb za prihvaćanje ili gumb za odbijanje
+							\item Liječnik pritišće gumb za prihvaćanje
 							
 						\end{packed_enum}
 						
@@ -809,6 +810,12 @@
 								
 								\item Liječnika se obavještava o grešci, putem ispisane poruke
 								\item Liječnika se moli da pokuša kasnije, ili da kontaktira administratora
+								
+							\end{packed_enum}
+							\item[4.b] Liječnik odbija preporuku o bolovanju
+							\item[] \begin{packed_enum}
+								
+								\item Sustav preporuku o bolovanju briše iz baze podataka, o čemu obavještava liječnika
 								
 							\end{packed_enum}
 						\end{packed_item}
@@ -870,6 +877,7 @@
 							\end{packed_enum}
 						\end{packed_item}
 					\end{packed_item}
+					\clearpage
 					
 					\noindent \underbar{\textbf{UC26 - Odaberi korisnika}}
 					\begin{packed_item}
@@ -980,10 +988,43 @@
 				\eject		
 				
 			\subsection{Sekvencijski dijagrami}
+				\textbf{Sekvencijski dijagram - Obrasci uporabe UC3, UC4, UC5, UC6, UC7 (Od prijave do prikaza povijesti liječničkih pregleda)}\newline
+					\text Roditelj prvo šalje zahtjev za prijavom, nakon čega ga sustav prebacuje na ekran za prijavu. Roditelj unosi podatke, koje sustav uzima i provjerava u bazi. Ako su ispravni, sustav dobavlja popis profila vezanih uz korisnički račun i popis svih obavijesti vezanih uz račun roditelja, nakon čega sustav otvara prikaz profila i obavijesti. Kada roditelj odabere jedan od računa, dobavljaju se podaci o tom računu, te popis obavijesti vezanih samo uz taj račun, i zatim se roditelju otvara profil, s prikazanim obavijestima. Roditelj odabire opciju za prikaz povijesti liječničkih pregleda. Sustav nakon toga dobavlja medicinski karton tog profila, nakon čega pomoću identifikatora kartona dobavlja popis obavljenih pregleda. Korisniku se otvara prikaz povijest liječničkih pregleda. \\
+					
+					%unos slike
+					\begin{figure}[H]
+						\includegraphics[scale=0.4]{dijagrami/rodseq1.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+						\centering
+						\caption{Sekvencijski dijagram prikaza pregleda}
+						\label{fig:seq1}
+					\end{figure}
+					\clearpage
+				\textbf{Sekvencijski dijagram - Obrasci uporabe UC13, UC15, UC16 (Odabir pacijenta, novi pregled i ispričnica)}\newline
+				\text Na popisu pacijenata pedijatar odabire jednog. Sustav pristupa bazi podataka iz koje vraća podatke o pacijentu, koji se zatim koriste pri stvaranju prikaza osobnih podataka pacijenta. Ako na profilu pacijenta pedijatar odabere opciju za unos novog pregleda, sustav dobavlja podatke o pacijentu ponovno iz baze, te ih zapisuje u polja za podatke pacijenta u prikazu koji stvara za pedijatra. U taj prikaz pedijatar, u za to određena polja, unosi podatke o pregledu. Ti podaci, kao i podaci pacijenta, koriste se u stvaranju novog objekta pregleda koji se sprema u bazu podataka. Pedijatra se nakon potvrde uspješnog spremanja u bazu vraća na profil pacijenta. [Bitno! UC13 i UC15 na identičan način funkcioniraju i za L.O.M.] Ako pedijatar odabere opciju za generiranje ispričnice, sustav iz baze prenosi podatak o kontaktu škole, koji se zapisuje u polje u prikazu za stvaranje nove ispričnice. U tom prikazu pedijatar ispunjava ostala polja, primarno opis razloga izdavanja ispričnice. Ispričnica se generira, prilikom čega se prvo šalje školi, a zatim sprema u bazu. Nakon primljene potvrde o uspješnom spremanju u bazu, sustav vraća pedijatra na profil pacijenta.
 				
-				\textbf{\textit{dio 1. revizije}}\\
+				%unos slike
+				\begin{figure}[H]
+					\includegraphics[scale=0.4]{dijagrami/pedseq1.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+					\centering
+					\caption{Sekvencijski dijagram osnovnih funkcionalnosti pedijatra}
+					\label{fig:seq2}
+				\end{figure}
+				\clearpage
 				
-				\textit{Nacrtati sekvencijske dijagrame koji modeliraju najvažnije dijelove sustava (max. 4 dijagrama). Ukoliko postoji nedoumica oko odabira, razjasniti s asistentom. Uz svaki dijagram napisati detaljni opis dijagrama.}
+				\textbf{Sekvencijski dijagram - Obrasci uporabe UC17 i UC23 (Generiranje i potvrda preporuke o bolovanju)}\newline
+					\text Na profilu pacijenta pedijatar odabire opciju generiraj preporuku za bolovanje. Sustav iz baze podataka dohvaća podatke o roditelju pacijenta. Iz njih se čuvaju email adresa poslodavca i identifikator liječnika. Pedijatru se otvara prikaz u kojem ispunjava podatke o preporuci o bolovanju (npr. razlog i trajanje, te ime i prezime roditelja). Nakon potvrde generiranja preporuke, ona se sprema u bazu podataka.
+					Kada liječnik želi pristupiti preporukama o bolovanju, on odabire opciju na svom izborniku. Kada odabere tu opciju, iz baze se dohvaćaju sve preporuke o bolovanju koje su povezane na doktora putem njegovog identifikatora. Za svaku doktor može odabrati opciju "Potvrdi" ili "Odbij". Prilikom potvrde se generira i šalje doznaka o bolovanju poslodavcu, nakon čega se preporuka briše iz baze. U slučaju odbijanja, preporuka se isto briše iz baze, bez slanja.
+					%unos slike
+					\begin{figure}[H]
+						\includegraphics[scale=0.4]{dijagrami/pedseq2.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+						\centering
+						\caption{Sekvencijski dijagram stvaranja i potvrde preporuke o bolovanju}
+						\label{fig:seq3}
+					\end{figure}
+					\clearpage
+					
+				
+					
 				\eject
 	
 		\section{Ostali zahtjevi}

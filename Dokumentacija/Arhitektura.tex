@@ -49,6 +49,7 @@
 				\item Obavijest
 				\item Specijalistički pregled
 				\item Preporuka o bolovanju
+				\item Ispričnica
 			\end{packed_item}
 		
 			\subsection{Opis tablica}
@@ -215,7 +216,7 @@
 					notificationTitle & VARCHAR &  Naslov obavijesti  \\ \hline 
 				\end{longtblr}
 				
-				\textbf{Specijalistički pregled} - Entitet sadržava podatke koji opisuju specijalistički pregled na kojeg liječnik/pedijatar prijavljuje pacijenta. Oni su: šifra pregleda, šifra pacijenta, naziv pregleda, moguće lokacije pregleda. Entitet Spec. pregled u odnosu je \textit{Many-to-One} s entitetima Roditelj i Dijete.
+				\textbf{Specijalistički pregled} - Entitet sadržava podatke koji opisuju specijalistički pregled na kojeg liječnik/pedijatar prijavljuje pacijenta. Oni su: šifra pregleda, šifra pacijenta, naziv pregleda, moguće lokacije pregleda. Entitet Spec. pregled u odnosu je \textit{Many-to-One} s entitetom Medicinski karton, preko čega mu pristupaju entiteti Roditelj i Dijete.
 				
 				\begin{longtblr}[
 					label=none,
@@ -225,14 +226,14 @@
 						colspec={|X[9,l]|X[6, l]|X[20, l]|}, 
 						rowhead = 1,
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
-					\hline \SetCell[c=3]{c}{\textbf{Specialist examination/Specijalistički pregled}}	 \\ \hline[3pt]
+					\hline \SetCell[c=3]{c}{\textbf{SpecialistExamination/Specijalistički pregled}}	 \\ \hline[3pt]
 					\SetCell{LightGreen}examId & INT	&  	Jedinstveni identifikator pregleda	\\ \hline
-					\SetCell{LightBlue}patientOib	& CHAR(11) &  Jedinstveni identifikator pacijenta 	\\ \hline 
+					\SetCell{LightBlue}recordId	& INT &  Jedinstveni identifikator kartona	\\ \hline 
 					examTitle & VARCHAR &  Naziv pregleda  \\ \hline 
 					examLocations & VARCHAR	&  	Moguće lokacije pregleda	\\ \hline
 				\end{longtblr}
 				
-				\textbf{Preporuka o bolovanju} - Entitet sadržava podatke o bolovanju kojeg pedijatar preporučuje za roditelja djeteta. Oni su: šifra preporuke, šifra liječnika obiteljske medicine, opis razloga za bolovanje i trajanja. Entitet Prep. o bolovanju u odnosu je \textit{Many-to-One} s entitetom Liječnik obiteljske medicine.
+				\textbf{Preporuka o bolovanju} - Entitet sadržava podatke o bolovanju kojeg pedijatar preporučuje za roditelja djeteta. Oni su: šifra preporuke, šifra liječnika obiteljske medicine, opis razloga za bolovanje i trajanja, te email poslodavca. Entitet Preporuka o bolovanju u odnosu je \textit{Many-to-One} s entitetom Liječnik obiteljske medicine.
 				
 				\begin{longtblr}[
 					label=none,
@@ -242,16 +243,33 @@
 						colspec={|X[9,l]|X[6, l]|X[20, l]|}, 
 						rowhead = 1,
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
-					\hline \SetCell[c=3]{c}{\textbf{Sick leave recommendation/Preporuka o bolovanju}}	 \\ \hline[3pt]
+					\hline \SetCell[c=3]{c}{\textbf{SickLeaveRecommendation/Preporuka o bolovanju}}	 \\ \hline[3pt]
 					\SetCell{LightGreen}recommendationId & INT	&  	Jedinstveni identifikator preporuke	\\ \hline
 					\SetCell{LightBlue}doctorId	& INT &  Jedinstveni identifikator liječnika	\\ \hline 
 					recData & VARCHAR &  Sadržaj preporuke  \\ \hline
+					employerEmail & VARCHAR &  email poslodavca kojem se šalje doznaka  \\ \hline
 				\end{longtblr}
 				
+				\textbf{Ispričnica} - Entitet sadržava podatke o ispričnici koju pedijatar piše za dijete. Oni su: šifra ispričnice, OIB djeteta, opis razloga za ispričnicom i trajanja. Entitet Ispričnica u odnosu je \textit{Many-to-One} s entitetom Dijete.
+				
+				\begin{longtblr}[
+					label=none,
+					entry=none
+					]{
+						width = \textwidth,
+						colspec={|X[9,l]|X[6, l]|X[20, l]|}, 
+						rowhead = 1,
+					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
+					\hline \SetCell[c=3]{c}{\textbf{SickNote/Ispričnica}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}sicknoteId & INT	&  	Jedinstveni identifikator ispričnice	\\ \hline
+					\SetCell{LightBlue}childOib	& CHAR(11) &  Jedinstveni identifikator djeteta	\\ \hline 
+					noteData & VARCHAR &  Sadržaj ispričnice  \\ \hline
+				\end{longtblr}
+				\clearpage
 			\subsection{Dijagrami baze podataka}
 				%unos slike
 				\begin{figure}[H]
-					\includegraphics[scale=0.5]{dijagrami/ozdraviER.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+					\includegraphics[scale=0.7]{dijagrami/ozdraviER.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
 					\centering
 					\caption{Dijagram arhitekture baze podataka}
 					\label{fig:arhitektura-baze1}
@@ -266,15 +284,27 @@
 				\end{figure}
 			
 			\eject
-			
+			\clearpage
 			
 		\section{Dijagram razreda}
 		
 			\textit{Potrebno je priložiti dijagram razreda s pripadajućim opisom. Zbog preglednosti je moguće dijagram razlomiti na više njih, ali moraju biti grupirani prema sličnim razinama apstrakcije i srodnim funkcionalnostima.}\\
 			
-			\textbf{\textit{dio 1. revizije}}\\
+			%unos slike
+			\begin{figure}[H]
+				\includegraphics[scale=0.2]{dijagrami/dijraz1.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Dijagram razreda 1}
+				\label{fig:dijraz1}
+			\end{figure}
 			
-			\textit{Prilikom prve predaje projekta, potrebno je priložiti potpuno razrađen dijagram razreda vezan uz \textbf{generičku funkcionalnost} sustava. Ostale funkcionalnosti trebaju biti idejno razrađene u dijagramu sa sljedećim komponentama: nazivi razreda, nazivi metoda i vrste pristupa metodama (npr. javni, zaštićeni), nazivi atributa razreda, veze i odnosi između razreda.}\\
+			%unos slike
+			\begin{figure}[H]
+				\includegraphics[scale=0.25]{dijagrami/dijraz2.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Dijagram razreda 2}
+				\label{fig:dijraz2}
+			\end{figure}
 			
 			\textbf{\textit{dio 2. revizije}}\\			
 			
