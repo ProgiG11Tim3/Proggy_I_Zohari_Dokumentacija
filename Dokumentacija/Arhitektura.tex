@@ -29,6 +29,12 @@
 			\item \textbf{Pogled} - Sadrži razrede čiji objekti služe za prikaz podataka, u bilo kojem obliku.
 			\item \textbf{Nadglednik} - Sadrži razrede koji upravljaju i rukuju korisničkom interakcijom s pogledom i modelom. 
 		\end{packed_item}
+		\text	Također smo se u našem kodu odlučili koristiti \textit{Controller-Service-Repository} uzorkom koji je dosta čest u aplikacijama koje koriste \textit{Spring Boot} alat. On se, očito iz naziva, sastoji od tri dijela:
+		\begin{packed_item}
+			\item \textbf{Controller} - "Najviši" dio. Služi za bilo kakvu interakciju između okoline aplikacije i njene unutarnje logike.
+			\item \textbf{Service} - "Središnji" dio. Unutar njega se implementiraju sve funkcije i sva logika aplikacije. 
+			\item \textbf{Repository} - "Najniži" dio. Služi za spremanje entiteta unutar sustava. Može imati vlastite funkcije, ali njih poziva \textit{Service}. 
+		\end{packed_item}
 		\clearpage
 		
 		
