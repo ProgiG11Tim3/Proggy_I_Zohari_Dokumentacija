@@ -31,9 +31,9 @@
 		\end{packed_item}
 		\text	Također smo se u našem kodu odlučili koristiti \textit{Controller-Service-Repository} uzorkom koji je dosta čest u aplikacijama koje koriste \textit{Spring Boot} alat. On se, očito iz naziva, sastoji od tri dijela:
 		\begin{packed_item}
-			\item \textbf{Controller} - "Najviši" dio. Služi za bilo kakvu interakciju između okoline aplikacije i njene unutarnje logike.
-			\item \textbf{Service} - "Središnji" dio. Unutar njega se implementiraju sve funkcije i sva logika aplikacije. 
-			\item \textbf{Repository} - "Najniži" dio. Služi za spremanje entiteta unutar sustava. Može imati vlastite funkcije, ali njih poziva \textit{Service}. 
+			\item \textbf{Controller} - "Najviši" dio. Služi za bilo kakvu interakciju između okoline aplikacije i njene unutarnje logike, na primjer za primanje i obradu zahtjeva poput \textit{POST} i \textit{GET}.
+			\item \textbf{Service} - "Središnji" dio. Unutar njega se implementiraju sve funkcije i sva logika aplikacije. Služi za pisanje kompleksne interakcije s bazom podataka i podacima u njoj.
+			\item \textbf{Repository} - "Najniži" dio. Esencijalno se radi o bazi podataka. Služi za spremanje entiteta unutar sustava. Može imati vlastite funkcije, poput \textit{Save}, ali njih može pozivati i \textit{Service}. 
 		\end{packed_item}
 		\clearpage
 		
@@ -331,11 +331,15 @@
 		
 		\section{Dijagram stanja}
 			
+			\text Dijagrami stanja pripadaju ponašajnim dijagramima u UML-u. Služe za opis diskretnih stanja sustava i prijelaza između istih. Na slici 4.7 prikazan je dijagram stanja za liječnika obiteljske medicine. Nakon prijave LOM-u se prikazuje popis njegovih pacijenata. Uz taj popis, ima opcije za prikaz preporuka za bolovanje koje je primio od raznih pedijatara, te opcija za unos novog pacijenta pomoću OIB-a istog. Uz svakog pacijenta u popisu ima opciju za otvaranje profila tog pacijenta. Nakon otvaranja profila, prvo se prikazuju osobni podaci pacijenta. Uz to, LOM ima opcije za prikaz liječničkog kartona, za unos novog pregleda odabranom pacijentu, za zakazivanje specijalističkog pregleda odabranom pacijentu, te za prikaz svih \textit{uploadanih} privatnih nalaza tog pacijenta. Svaki od tih nalaza moguće je pojedinačno otvoriti, te na svaki poslati povratnu informaciju. 
 			
-			\textbf{\textit{dio 2. revizije}}\\
-			
-			\textit{Potrebno je priložiti dijagram stanja i opisati ga. Dovoljan je jedan dijagram stanja koji prikazuje \textbf{značajan dio funkcionalnosti} sustava. Na primjer, stanja korisničkog sučelja i tijek korištenja neke ključne funkcionalnosti jesu značajan dio sustava, a registracija i prijava nisu. }
-			
+			%unos slike
+			\begin{figure}[H]
+				\includegraphics[scale=0.4]{dijagrami/dijstanj1.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Dijagram stanja}
+				\label{fig:dijstanj1}
+			\end{figure}
 			
 			\eject 
 		
