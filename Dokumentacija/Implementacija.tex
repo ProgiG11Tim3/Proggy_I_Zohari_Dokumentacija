@@ -40,9 +40,15 @@
 		
 		\section{Dijagram razmještaja}
 			
-			\textbf{\textit{dio 2. revizije}}
+			\text Dijagrami razmještaja spadaju pod strukturne i statičke UML dijagrame koji opisuju topologiju sustava, te su usredotočeni na odnos sklopovskih i programskih dijelova. Na slici 5.X prikazan je dijagram razmještaja naše aplikacije. Na klijentskom se računalu nalazi web preglednik kojim se putem HTTPS veze pristupa aplikaciji. Web aplikacija pokrenuta je unutar web poslužitelja, koji se nalazi na poslužiteljskom računalu. Unutar okoline izvođenja web poslužitelja također se nalazi i baza podataka. Razlog manjku zasebnog poslužitelja za bazu podataka je korištenje baze H2, koja je integrirana u \textit{backend}.
 			
-			 \textit{Potrebno je umetnuti \textbf{specifikacijski} dijagram razmještaja i opisati ga. Moguće je umjesto specifikacijskog dijagrama razmještaja umetnuti dijagram razmještaja instanci, pod uvjetom da taj dijagram bolje opisuje neki važniji dio sustava.}
+			%unos slike
+			\begin{figure}[H]
+				\includegraphics[scale=0.7]{dijagrami/dijrazm1.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Dijagram stanja}
+				\label{fig:dijstanj1}
+			\end{figure}
 			
 			\eject 
 		
