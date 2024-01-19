@@ -357,7 +357,13 @@
 			
 			\eject
 		\section{Dijagram komponenti}
-		
-			\textbf{\textit{dio 2. revizije}}\\
-		
-			 \textit{Potrebno je priložiti dijagram komponenti s pripadajućim opisom. Dijagram komponenti treba prikazivati strukturu cijele aplikacije.}
+			\text Dijagram komponenti strukturni je i statički UML dijagram koji služi za specifikaciju arhitekture programske potpore. Vrlo je koristan za prikaz organizacije i međuovisnosti unutar građe sustava. Na slici 4.9 nalazi se dijagram komponenti koji opisuje strukturu naše aplikacije. Korisnik ima interakciju s \textit{frontend} dijelom aplikacije, unutar kojeg se nalazi vizualno sučelje \textit{React-view}. Ondje se nalaze dva sučelja za interakciju s aplikacijom. Sučelje za dohvat HTML, CSS i JavaScript datoteka poslužuje \textit{frontend} dio aplikacije i omogućuje njegov rad. Router komponenta odgovara na URL upite, te kao odgovor šalje različite React/JS datoteke. Te datoteke grupirane su radi jednostavnosti u logičke cjeline, koje su nazvane prema glavnim prikazima u aplikaciji, te po korisnicima iste. Sve JavaScript datoteke ovise o React biblioteci, jer iz nje dohvaćaju gotove komponente.
+			Drugo sučelje služi za prijenos JSON podataka. REST API poslužuje te podatke. Svi podaci unutar aplikacije nalaze se u H2 bazi podataka. Ona je putem sučelja povezana s grupom komponenata Repositories, koje služe kao svojevrsni most između aplikacije i baze podataka. Services grupa komponenata vuče podatke iz repozitorija, te ih šalje upravljačima.
+			%unos slike
+			\begin{figure}[H]
+				\includegraphics[scale=0.5]{dijagrami/dijkomp.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Dijagram komponenti}
+				\label{fig:dijkomp}
+			\end{figure}
+			

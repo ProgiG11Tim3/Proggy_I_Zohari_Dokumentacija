@@ -20,8 +20,75 @@
 	
 			
 			\subsection{Ispitivanje komponenti}
-			\textit{Potrebno je provesti ispitivanje jedinica (engl. unit testing) nad razredima koji implementiraju temeljne funkcionalnosti. Razraditi \textbf{minimalno 6 ispitnih slučajeva} u kojima će se ispitati redovni slučajevi, rubni uvjeti te izazivanje pogreške (engl. exception throwing). Poželjno je stvoriti i ispitni slučaj koji koristi funkcionalnosti koje nisu implementirane. Potrebno je priložiti izvorni kôd svih ispitnih slučajeva te prikaz rezultata izvođenja ispita u razvojnom okruženju (prolaz/pad ispita). }
+			\text Prilikom ispitivanja komponenti izvedeno je 20 testova nad razredima u izvornom kodu. Ovo potpoglavlje biti će ograničeno na svega 6, no ostale je moguće vidjeti na GitHub repozitoriju. Poveznica na isti nalazi se u literaturi. Također, bitno je spomenuti da se sekcija testova naziva \textit{DoctorControllerTest} može gledati kao skupina koja se odnosi i na korisnike tipa Pedijatar i korisnike tipa Liječnik obiteljske medicine, zbog sličnosti izvedbe razreda.
 			
+			%unos slike
+			\begin{figure}[H]
+				\includegraphics[scale=0.48]{slike/testoviRazreda.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Prikaz izvršenih testova}
+				\label{fig:slikatestova}
+			\end{figure}
+			
+			\begin{packed_enum}
+				
+				\item \textbf{Test registracije postojećeg roditelja:}
+				\text U navedenom testu šalje se zahtjev za stvaranjem novog entiteta roditelja koji ima već korišteni OIB unutar aplikacije. Očekuje se odgovor tipa "400 Bad Request", kakav odgovor je i dobiven.
+				%unos slike
+				\begin{figure}[H]
+					\includegraphics[scale=0.6]{slike/isjecak1.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+					\centering
+					\caption{Test registracije postojećeg OIB-a}
+					\label{fig:isjecak1}
+				\end{figure}
+				\item \textbf{Test registracije roditelja:}
+				\text U navedenom testu šalje se zahtjev za stvaranjem novog entiteta roditelja, i kojemu su svi podaci ispravni. Očekuje se odgovor tipa "200 OK", kakav je i dobiven.
+				%unos slike
+				\begin{figure}[H]
+					\includegraphics[scale=0.6]{slike/isjecak2.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+					\centering
+					\caption{Test registracije roditelja}
+					\label{fig:isjecak2}
+				\end{figure}
+				\item \textbf{Test prijave i dobavljanja svih pacijenata:}
+				\text U navedenom testu šalju se ispravni podaci za prijavu, nakon čega se šalje zahtjev za popisom svih pacijenata prijavljenog doktora. Očekuje se odgovor tipa "200 OK", kakav je i dobiven.
+				%unos slike
+				\begin{figure}[H]
+					\includegraphics[scale=0.6]{slike/isjecak3.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+					\centering
+					\caption{Test dobavljanja pacijenata}
+					\label{fig:isjecak3}
+				\end{figure}
+				\item \textbf{Test dobavljanja kartona:}
+				\text U navedenom testu šalju se ispravni podaci za prijavu, nakon čega se šalje zahtjev za kartonom određenog pacijenta. Taj pacijent nema postojeći karton, te je potrebno stvoriti novi. Očekuje se odgovor tipa "200 OK", kakav je i dobiven.
+				%unos slike
+				\begin{figure}[H]
+					\includegraphics[scale=0.6]{slike/isjecak4.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+					\centering
+					\caption{Test dobavljanja kartona}
+					\label{fig:isjecak4}
+				\end{figure}
+				\item \textbf{Test dobavljanja pacijenta po neispravnom OIB-u:}
+				\text U navedenom testu šalju se ispravni podaci za prijavu, nakon čega se šalje zahtjev za profilom pacijenta čiji OIB nije unesen u sustav. Očekuje se odgovor tipa "400 Bad Request", kakav je i dobiven.
+				%unos slike
+				\begin{figure}[H]
+					\includegraphics[scale=0.6]{slike/isjecak5.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+					\centering
+					\caption{Test dobavljanja pacijenata s neispravnim OIB-om}
+					\label{fig:isjecak5}
+				\end{figure}
+				\item \textbf{Test dobavljanja nalaza pacijenta:}
+				\text U navedenom testu šalju se ispravni podaci za prijavu, nakon čega se šalje zahtjev za nalazima pacijenta prijavljenog doktora. Očekuje se odgovor tipa "200 OK", kakav je i dobiven.
+				%unos slike
+				\begin{figure}[H]
+					\includegraphics[scale=0.6]{slike/isjecak6.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+					\centering
+					\caption{Test dobavljanja nalaza}
+					\label{fig:isjecak6}
+				\end{figure}
+				
+			\end{packed_enum}
+			\clearpage
 			
 			
 			\subsection{Ispitivanje sustava}
@@ -46,7 +113,7 @@
 			\begin{figure}[H]
 				\includegraphics[scale=0.7]{dijagrami/dijrazm1.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
 				\centering
-				\caption{Dijagram stanja}
+				\caption{Dijagram razmještaja}
 				\label{fig:dijstanj1}
 			\end{figure}
 			
@@ -54,12 +121,68 @@
 		
 		\section{Upute za puštanje u pogon}
 		
-			\textbf{\textit{dio 2. revizije}}\\
-		
-			 \textit{U ovom poglavlju potrebno je dati upute za puštanje u pogon (engl. deployment) ostvarene aplikacije. Na primjer, za web aplikacije, opisati postupak kojim se od izvornog kôda dolazi do potpuno postavljene baze podataka i poslužitelja koji odgovara na upite korisnika. Za mobilnu aplikaciju, postupak kojim se aplikacija izgradi, te postavi na neku od trgovina. Za stolnu (engl. desktop) aplikaciju, postupak kojim se aplikacija instalira na računalo. Ukoliko mobilne i stolne aplikacije komuniciraju s poslužiteljem i/ili bazom podataka, opisati i postupak njihovog postavljanja. Pri izradi uputa preporučuje se \textbf{naglasiti korake instalacije uporabom natuknica} te koristiti što je više moguće \textbf{slike ekrana} (engl. screenshots) kako bi upute bile jasne i jednostavne za slijediti.}
+			\subsection{\textit{Deploy} na Render - Backend}
+			Potrebno je postaviti izvorni kod aplikacije na vlastiti repozitorij na servisu GitHub. Izvorni kod moguće je preuzeti s GitHub repozitorija projekta, čija se poveznica nalazi u literaturi. Jednom kada je cijeli izvorni kod na repozitoriju, potrebno je otvoriti stranicu servisa Render\footnote{https://dashboard.render.com/}, te se prijaviti ili kreirati račun. Kada je prijava provedena, potrebno je odabrati opciju "New", te odabrati opciju \textit{Web service}.
+				%unos slike
+			\begin{figure}[H]
+				\includegraphics[scale=0.9]{slike/render0.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Opcija \textit{Web service}}
+				\label{fig:render0}
+			\end{figure}
+			Nakon toga, potrebno je odabrati prvu opciju na sljedećem izborniku, \textit{Build and deploy from a Git repository}.
+			%unos slike
+			\begin{figure}[H]
+				\includegraphics[scale=0.7]{slike/render1.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Izbornik za \textit{deploy}}
+				\label{fig:render1}
+			\end{figure}
+			Na idućem ekranu potrebno je prijaviti se pomoću svog GitHub ili GitLab računa. Nakon što se korisnik uspješno prijavi, nudi mu se lista mogućih repozitorija za dodavanje na Render.
+			%unos slike
+			\begin{figure}[H]
+				\includegraphics[scale=0.7]{slike/render2.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Izbornik repozitorija}
+				\label{fig:render2}
+			\end{figure}
+			Na sljedećem ekranu potrebno je unijeti ime servisa, regiju za korištenje, izvorni/korijenski direktorij te \textit{Runtime} opciju. Pod pretpostavkom da je odabran direktorij za \textit{backend}, unesene opcije trebaju biti sljedeće:
+			%unos slike
+			\begin{figure}[H]
+				\includegraphics[scale=0.7]{slike/render3.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Izbornik opcija za stvaranje \textit{backenda}}
+				\label{fig:render3}
+			\end{figure}
+			Dodatno, potrebno je otvoriti opciju \textit{Advanced} te unijeti putanju do \textit{Dockerfile}, što se u slučaju aplikacije ozdravi nalazi na lokaciji \textbf{./docker/Dockerfile}:
+			%unos slike
+			\begin{figure}[H]
+				\includegraphics[scale=0.7]{slike/render4.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Unos lokacije Dockerfilea}
+				\label{fig:render4}
+			\end{figure}
+			Potrebno je još samo stisnuti gumb \textit{Create Web Service}. \clearpage
+			\eject
 			
-			
-			 \textit{Dovršenu aplikaciju potrebno je pokrenuti na javno dostupnom poslužitelju. Studentima se preporuča korištenje neke od sljedećih besplatnih usluga: \href{https://aws.amazon.com/}{Amazon AWS}, \href{https://azure.microsoft.com/en-us/}{Microsoft Azure} ili \href{https://www.heroku.com/}{Heroku}. Mobilne aplikacije trebaju biti objavljene na F-Droid, Google Play ili Amazon App trgovini.}
+			\subsection{\textit{Deploy} na Render - Frontend}
+			Za \textit{deploy} \textit{frontend} dijela aplikacije, potrebno je ponovno odabrati opcije \textbf{New - Web service}. Prilikom unosa opcija, ovaj puta se postupa malo drugačije. Potrebno je unijeti naziv, te dodati \textbf{frontend} kao \textit{root directory}, a zatim odabrati opciju \textit{Node} unutar opcije \textit{Runtime}. Uz to, potrebno je unijeti komandu \textbf{yarn build} unutar opcije \textit{Build Command} i \textbf{yarn start-prod} unutar \textit{Start Command}. 
+			%unos slike
+			\begin{figure}[H]
+				\includegraphics[scale=0.8]{slike/render5.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Unos opcija za \textit{frontend}}
+				\label{fig:render5}
+			\end{figure}
+			Potrebno je još samo otvoriti opciju \textit{Advanced}, te u dodatne \textit{environment} varijable dodati varijablu imena\textbf{ API\textunderscore BASE\textunderscore URL}, te postaviti \textit{value} na adresu deployanog backenda aplikacije dostupnu na Render dashboardu.
+			%unos slike
+			\begin{figure}[H]
+				\includegraphics[scale=0.8]{slike/render6.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Unos opcije za povezivanje}
+				\label{fig:render6}
+			\end{figure}
+			Ponovno, potrebno je još samo pritisnuti \textit{Create Web Service}.
 			
 			
 			\eject 
