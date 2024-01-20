@@ -185,6 +185,7 @@
 					\SetCell{LightBlue}recordId	& INT &  Jedinstveni identifikator kartona 	\\ \hline 
 					diagnosis & VARCHAR &  Opis dijagnoze  \\ \hline 
 					dateOfExamination & DATE	&  	Datum pregleda	\\ \hline
+					medicalCertificate & BOOLEAN & Zastavica unosa trenutne dijagnoze \\ \hline
 				\end{longtblr}
 				
 				\textbf{Nalaz} - Entitet sadržava podatke koji opisuju nalaz dobiven prilikom privatnog pregleda, kojeg \textit{uploada} roditelj. Oni su: šifra nalaza, šifra kartona, datum nalaza, podaci nalaza. Entitet Nalaz u odnosu je \textit{Many-to-One} s entitetom Medicinski karton.
@@ -222,7 +223,7 @@
 					notificationTitle & VARCHAR &  Naslov obavijesti  \\ \hline 
 				\end{longtblr}
 				
-				\textbf{Specijalistički pregled} - Entitet sadržava podatke koji opisuju specijalistički pregled na kojeg liječnik/pedijatar prijavljuje pacijenta. Oni su: šifra pregleda, šifra pacijenta, naziv pregleda, moguće lokacije pregleda. Entitet Spec. pregled u odnosu je \textit{Many-to-One} s entitetom Medicinski karton, preko čega mu pristupaju entiteti Roditelj i Dijete.
+				\textbf{Specijalistički pregled} - Entitet sadržava podatke koji opisuju specijalistički pregled na kojeg liječnik/pedijatar prijavljuje pacijenta. Oni su: šifra pregleda, šifra pacijenta, naziv pregleda, moguće lokacije pregleda. Entitet Spec. pregled u odnosu je \textit{Many-to-One} s entitetom Medicinski karton, preko čega mu pristupaju entiteti Roditelj i Dijete. Entitet je također u odnosu Many-to-Many s entitetima tipa HospitalLocation.
 				
 				\begin{longtblr}[
 					label=none,
@@ -236,10 +237,9 @@
 					\SetCell{LightGreen}examId & INT	&  	Jedinstveni identifikator pregleda	\\ \hline
 					\SetCell{LightBlue}recordId	& INT &  Jedinstveni identifikator kartona	\\ \hline 
 					examTitle & VARCHAR &  Naziv pregleda  \\ \hline 
-					examLocations & VARCHAR	&  	Moguće lokacije pregleda	\\ \hline
 				\end{longtblr}
 				
-				\textbf{Preporuka o bolovanju} - Entitet sadržava podatke o bolovanju kojeg pedijatar preporučuje za roditelja djeteta. Oni su: šifra preporuke, šifra liječnika obiteljske medicine, opis razloga za bolovanje i trajanja, te email poslodavca. Entitet Preporuka o bolovanju u odnosu je \textit{Many-to-One} s entitetom Liječnik obiteljske medicine.
+				\textbf{Preporuka o bolovanju} - Entitet sadržava podatke o bolovanju kojeg pedijatar preporučuje za roditelja djeteta. Oni su: šifra preporuke, šifra liječnika obiteljske medicine, opis razloga za bolovanje i trajanja, te email poslodavca. Entitet Preporuka o bolovanju u odnosu je \textit{Many-to-One} s entitetom Roditelj.
 				
 				\begin{longtblr}[
 					label=none,
@@ -251,9 +251,12 @@
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
 					\hline \SetCell[c=3]{c}{\textbf{SickLeaveRecommendation/Preporuka o bolovanju}}	 \\ \hline[3pt]
 					\SetCell{LightGreen}recommendationId & INT	&  	Jedinstveni identifikator preporuke	\\ \hline
-					\SetCell{LightBlue}doctorId	& INT &  Jedinstveni identifikator liječnika	\\ \hline 
+					\SetCell{LightBlue}parentId	& INT &  Jedinstveni identifikator liječnika	\\ \hline 
 					recData & VARCHAR &  Sadržaj preporuke  \\ \hline
 					employerEmail & VARCHAR &  email poslodavca kojem se šalje doznaka  \\ \hline
+					sickLeaveStartDate & DATE & Datum početka bolovanja \\ \hline
+					isApproved & BOOLEAN & Zastavica za provjeru potvrde bolovanja \\ \hline
+				
 				\end{longtblr}
 				
 				\textbf{Ispričnica} - Entitet sadržava podatke o ispričnici koju pedijatar piše za dijete. Oni su: šifra ispričnice, OIB djeteta, opis razloga za ispričnicom i trajanja. Entitet Ispričnica u odnosu je \textit{Many-to-One} s entitetom Dijete.
@@ -271,10 +274,83 @@
 					\SetCell{LightBlue}childOib	& CHAR(11) &  Jedinstveni identifikator djeteta	\\ \hline 
 					noteData & VARCHAR &  Sadržaj ispričnice  \\ \hline
 				\end{longtblr}
+				
+				\textbf{Lokacija bolnice} - Entitet sadržava podatke o bolnicama unutar Republike Hrvatske. Oni su: šifra bolnice, adresa, lokacija, ime bolnice, x i y koordinate bolnice na karti. Entitet Bolnica u odnosu je \textit{Many-to-Many} s entitetom Specijalistički pregled.
+				
+				\begin{longtblr}[
+					label=none,
+					entry=none
+					]{
+						width = \textwidth,
+						colspec={|X[9,l]|X[6, l]|X[20, l]|}, 
+						rowhead = 1,
+					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
+					\hline \SetCell[c=3]{c}{\textbf{HospitalLocation/Lokacija bolnice}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}hosLocationId & INT	&  	Jedinstveni identifikator bolnice	\\ \hline
+					adress	& VARCHAR &  Adresa bolnice	\\ \hline 
+					location & VARCHAR &  Lokacija bolnice geografski  \\ \hline
+					hospitalName & VARCHAR & Ime bolnice \\ \hline
+					x\textunderscore coordinate & DOUBLE & X koordinata bolnice \\ \hline
+					y\textunderscore coordinate & DOUBLE & Y koordinata bolnice \\ \hline
+				\end{longtblr}
+				
+				\textbf{Lokacija pregleda} - Pomoćni entitet koji služi za povezivanje entiteta Specijalistički pregled i Lokacija bolnice. Sadrži polja podataka sa šifrom spec. pregleda i šifrom bolnice gdje se pregled izvodi. Oba su i primarni i strani ključ, stoga će oba biti obojena u zeleno.
+				
+				\begin{longtblr}[
+					label=none,
+					entry=none
+					]{
+						width = \textwidth,
+						colspec={|X[9,l]|X[6, l]|X[20, l]|}, 
+						rowhead = 1,
+					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
+					\hline \SetCell[c=3]{c}{\textbf{Lokacija pregleda/ExamLocation}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}hosLocationId & INT	&  	Jedinstveni identifikator bolnice	\\ \hline
+					\SetCell{LightGreen}examId & INT	&  	Jedinstveni identifikator pregleda	\\ \hline
+				\end{longtblr}
+				
+				\textbf{Datoteka} - Entitet koji pohranjuje PDF datoteke koje roditelj \textit{uploada} prilikom slanja privatnog nalaza liječniku/pedijatru. Entitet je u vezi \textit{Many-to-One} s entitetom Nalaz.
+				\begin{longtblr}[
+					label=none,
+					entry=none
+					]{
+						width = \textwidth,
+						colspec={|X[9,l]|X[6, l]|X[20, l]|}, 
+						rowhead = 1,
+					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
+					\hline \SetCell[c=3]{c}{\textbf{File/Datoteka}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}fileId & VARCHAR	&  	Jedinstveni identifikator datoteke	\\ \hline
+					name	& VARCHAR & Ime datoteke	\\ \hline 
+					message & VARCHAR &  Popratna poruka uz datoteku  \\ \hline
+					type & VARCHAR & Tip datoteke \\ \hline
+					data & BINARY LARGE OBJ. & Sama datoteka \\ \hline
+					\SetCell{LightBlue}reportId & INT & Ostvaruje vezu s Nalazom\\ \hline
+				\end{longtblr}
+				
+				\textbf{\textit{Login} sjednica} - Entitet u kojem se spremaju trenutni korisnici u sjednici. Nije vezan ni za koji drugi entitet.
+				
+				\begin{longtblr}[
+					label=none,
+					entry=none
+					]{
+						width = \textwidth,
+						colspec={|X[9,l]|X[6, l]|X[20, l]|}, 
+						rowhead = 1,
+					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
+					\hline \SetCell[c=3]{c}{\textbf{File/Datoteka}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}loginSessionId & INT	&  	Jedinstveni identifikator sjednice	\\ \hline
+					role	& VARCHAR & Tip korisnika	\\ \hline 
+					session & VARCHAR &  - \\ \hline
+					username & VARCHAR & Korisničko ime \\ \hline
+					password & VARCHAR & Korisnička lozinka \\ \hline
+					active & BOOLEAN & Zastavica za aktivnost sjednice\\ \hline
+				\end{longtblr}
+				
+				
 			\subsection{Dijagrami baze podataka}
 				%unos slike
 				\begin{figure}[H]
-					\includegraphics[scale=0.1]{dijagrami/ozdraviER.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+					\includegraphics[scale=0.5]{dijagrami/ozdraviER.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
 					\centering
 					\caption{Dijagram arhitekture baze podataka}
 					\label{fig:arhitektura-baze1}
@@ -282,7 +358,7 @@
 				
 				%unos slike
 				\begin{figure}[H]
-					\includegraphics[scale=0.07]{dijagrami/ozdraviREL.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+					\includegraphics[scale=0.35]{dijagrami/ozdraviREL.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
 					\centering
 					\caption{Dijagram arhitekture baze podataka}
 					\label{fig:arhitektura-baze2}
@@ -298,7 +374,7 @@
 			
 			%unos slike
 			\begin{figure}[H]
-				\includegraphics[scale=0.15]{dijagrami/dijraz1.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\includegraphics[scale=0.0925]{dijagrami/dijraz1.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
 				\centering
 				\caption{Dijagram razreda 1}
 				\label{fig:dijraz1}
@@ -315,15 +391,21 @@
 			
 			%unos slike
 			\begin{figure}[H]
-				\includegraphics[scale=0.225]{dijagrami/dijraz3.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\includegraphics[scale=0.1]{dijagrami/dijraz3.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
 				\centering
 				\caption{Dijagram razreda 3}
 				\label{fig:dijraz3}
 			\end{figure}
+			\clearpage
+			\text Na slici 4.7 nalaze se pomoćni razredi za rad aplikacije. 
+			%unos slike
+			\begin{figure}[H]
+				\includegraphics[scale=0.225]{dijagrami/dijraz4.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Dijagram razreda 4}
+				\label{fig:dijraz4}
+			\end{figure}
 			
-			\textbf{\textit{dio 2. revizije}}\\			
-			
-			\textit{Prilikom druge predaje projekta dijagram razreda i opisi moraju odgovarati stvarnom stanju implementacije}
 			
 			
 			
